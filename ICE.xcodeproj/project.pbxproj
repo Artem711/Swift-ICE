@@ -32,8 +32,6 @@
 		ACCD2DDA26BA4A4100C550A8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ACCD2DD926BA4A4100C550A8 /* FirebaseAuth */; };
 		ACCD2DF526BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2DF426BA4ED600C550A8 /* HeaderViewModifier.swift */; };
 		ACCD2DF626BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2DF426BA4ED600C550A8 /* HeaderViewModifier.swift */; };
-		ACCD2E0226BA506000C550A8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2E0126BA506000C550A8 /* LoginView.swift */; };
-		ACCD2E0326BA506000C550A8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2E0126BA506000C550A8 /* LoginView.swift */; };
 		ACCD2E1626BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2E1526BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift */; };
 		ACCD2E1726BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2E1526BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift */; };
 		ACCD2E3426BA608E00C550A8 /* PrimaryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD2E3326BA608E00C550A8 /* PrimaryButtonView.swift */; };
@@ -82,7 +80,6 @@
 		AC6F4B8C26BDA3D400EF1442 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		ACCD2DCB26BA488500C550A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ACCD2DF426BA4ED600C550A8 /* HeaderViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewModifier.swift; sourceTree = "<group>"; };
-		ACCD2E0126BA506000C550A8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ACCD2E1526BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayoutComponentModifier.swift; sourceTree = "<group>"; };
 		ACCD2E3326BA608E00C550A8 /* PrimaryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonView.swift; sourceTree = "<group>"; };
 		ACDC23DA26B9CE2200D26B66 /* ModuleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleWrapper.swift; sourceTree = "<group>"; };
@@ -387,6 +384,20 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		AC423AA626BF351B00BD54F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC423AAB26BF351D00BD54F6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		AC6F4B7126BD9C4A00EF1442 /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,18 +407,11 @@
 			path = Shapes;
 			sourceTree = "<group>";
 		};
-		ACCD2DFB26BA503D00C550A8 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				ACCD2E0126BA506000C550A8 /* LoginView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		ACCD2DFC26BA504700C550A8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				ACCD2DFB26BA503D00C550A8 /* Views */,
+				AC423AAB26BF351D00BD54F6 /* ViewModels */,
+				AC423AA626BF351B00BD54F6 /* Views */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -632,7 +636,6 @@
 				AC18C61826BD6416005F13B9 /* FooterView.swift in Sources */,
 				AC2E564326B9AF0D00EAF7B0 /* FooterNavigatorView.swift in Sources */,
 				ACCD2DF526BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
-				ACCD2E0226BA506000C550A8 /* LoginView.swift in Sources */,
 				AC2E563726B9AD4800EAF7B0 /* Color.swift in Sources */,
 				AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
 				ACDC23DB26B9CE2200D26B66 /* ModuleWrapper.swift in Sources */,
@@ -651,7 +654,6 @@
 			files = (
 				AC6F4B8E26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
 				AC6F4B7426BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
-				ACCD2E0326BA506000C550A8 /* LoginView.swift in Sources */,
 				ACCD2E1726BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
 				ACCD2DF626BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				AC2E561726B9AC8400EAF7B0 /* Main.swift in Sources */,
