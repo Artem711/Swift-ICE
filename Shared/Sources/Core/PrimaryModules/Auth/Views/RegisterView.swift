@@ -7,16 +7,19 @@
 
 import SwiftUI
 
-struct LoginView: View {
-    @StateObject private var viewModel = AuthViewModel(mode: .login)
+struct RegisterView: View {
+    @StateObject private var viewModel = AuthViewModel()
     
     var body: some View {
-        Text("LoginView")
+        VStack {
+            Text("Create an account")
+            Button("Sign up") {}
+        }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        RegisterView()
     }
 }

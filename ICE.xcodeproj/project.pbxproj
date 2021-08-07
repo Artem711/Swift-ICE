@@ -23,8 +23,8 @@
 		AC423AAD26BF35F400BD54F6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AAC26BF35F400BD54F6 /* UserService.swift */; };
 		AC423AB826BF36F000BD54F6 /* AuthPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */; };
 		AC423AB926BF36F000BD54F6 /* AuthPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */; };
-		AC423AC626BF3B7200BD54F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* LoginView.swift */; };
-		AC423AC726BF3B7200BD54F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* LoginView.swift */; };
+		AC423AC626BF3B7200BD54F6 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* RegisterView.swift */; };
+		AC423AC726BF3B7200BD54F6 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* RegisterView.swift */; };
 		AC423ACD26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */; };
 		AC423ACE26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */; };
 		AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */; };
@@ -85,7 +85,7 @@
 		AC4239C926BDAFBB00BD54F6 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		AC423AAC26BF35F400BD54F6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPublisher.swift; sourceTree = "<group>"; };
-		AC423AC526BF3B7200BD54F6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AC423AC526BF3B7200BD54F6 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterRectangleView.swift; sourceTree = "<group>"; };
 		AC6F4B8C26BDA3D400EF1442 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 		AC423AA626BF351B00BD54F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AC423AC526BF3B7200BD54F6 /* LoginView.swift */,
+				AC423AC526BF3B7200BD54F6 /* RegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -662,7 +662,7 @@
 				ACCD2E3426BA608E00C550A8 /* PrimaryButtonView.swift in Sources */,
 				AC2E569C26B9B8CA00EAF7B0 /* NavigationManager.swift in Sources */,
 				ACCD2E1626BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
-				AC423AC626BF3B7200BD54F6 /* LoginView.swift in Sources */,
+				AC423AC626BF3B7200BD54F6 /* RegisterView.swift in Sources */,
 				AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,7 +675,7 @@
 				AC6F4B8E26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
 				AC6F4B7426BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
 				ACCD2E1726BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
-				AC423AC726BF3B7200BD54F6 /* LoginView.swift in Sources */,
+				AC423AC726BF3B7200BD54F6 /* RegisterView.swift in Sources */,
 				ACCD2DF626BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				AC2E561726B9AC8400EAF7B0 /* Main.swift in Sources */,
 				AC4239CB26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */,
