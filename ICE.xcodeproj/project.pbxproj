@@ -20,6 +20,13 @@
 		AC2E569C26B9B8CA00EAF7B0 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E569B26B9B8CA00EAF7B0 /* NavigationManager.swift */; };
 		AC4239CA26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4239C926BDAFBB00BD54F6 /* RoundedCorner.swift */; };
 		AC4239CB26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4239C926BDAFBB00BD54F6 /* RoundedCorner.swift */; };
+		AC423AAD26BF35F400BD54F6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AAC26BF35F400BD54F6 /* UserService.swift */; };
+		AC423AB826BF36F000BD54F6 /* AuthPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */; };
+		AC423AB926BF36F000BD54F6 /* AuthPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */; };
+		AC423AC626BF3B7200BD54F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* LoginView.swift */; };
+		AC423AC726BF3B7200BD54F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* LoginView.swift */; };
+		AC423ACD26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */; };
+		AC423ACE26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */; };
 		AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */; };
 		AC6F4B7426BD9C5300EF1442 /* StarterRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */; };
 		AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F4B8C26BDA3D400EF1442 /* TransparentButton.swift */; };
@@ -76,6 +83,10 @@
 		AC2E568B26B9B5D600EAF7B0 /* ScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerView.swift; sourceTree = "<group>"; };
 		AC2E569B26B9B8CA00EAF7B0 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		AC4239C926BDAFBB00BD54F6 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		AC423AAC26BF35F400BD54F6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPublisher.swift; sourceTree = "<group>"; };
+		AC423AC526BF3B7200BD54F6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterRectangleView.swift; sourceTree = "<group>"; };
 		AC6F4B8C26BDA3D400EF1442 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		ACCD2DCB26BA488500C550A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -200,8 +211,6 @@
 		AC2E562E26B9ACEE00EAF7B0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AC423A6826BF320B00BD54F6 /* Models */,
-				AC423A5F26BF31E200BD54F6 /* Services */,
 				ACCD2E1426BA5BA600C550A8 /* Types */,
 				AC2E563C26B9ADCE00EAF7B0 /* Core */,
 				AC2E55ED26B9AC7C00EAF7B0 /* Main.swift */,
@@ -271,7 +280,8 @@
 		AC2E567B26B9B29D00EAF7B0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				ACCD2DFC26BA504700C550A8 /* Login */,
+				AC423AAB26BF351D00BD54F6 /* ViewModels */,
+				AC423AA626BF351B00BD54F6 /* Views */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -330,6 +340,7 @@
 		AC423A5F26BF31E200BD54F6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AC423AAC26BF35F400BD54F6 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -387,6 +398,7 @@
 		AC423AA626BF351B00BD54F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC423AC526BF3B7200BD54F6 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -394,8 +406,17 @@
 		AC423AAB26BF351D00BD54F6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AC423ACC26BF3BB600BD54F6 /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AC423AB626BF36BE00BD54F6 /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */,
+			);
+			path = Publishers;
 			sourceTree = "<group>";
 		};
 		AC6F4B7126BD9C4A00EF1442 /* Shapes */ = {
@@ -405,15 +426,6 @@
 				AC4239E026BF047600BD54F6 /* Views */,
 			);
 			path = Shapes;
-			sourceTree = "<group>";
-		};
-		ACCD2DFC26BA504700C550A8 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				AC423AAB26BF351D00BD54F6 /* ViewModels */,
-				AC423AA626BF351B00BD54F6 /* Views */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		ACCD2E0826BA55DB00C550A8 /* Inputs */ = {
@@ -435,6 +447,9 @@
 		ACCD2E1426BA5BA600C550A8 /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				AC423A6826BF320B00BD54F6 /* Models */,
+				AC423A5F26BF31E200BD54F6 /* Services */,
+				AC423AB626BF36BE00BD54F6 /* Publishers */,
 				AC2E563026B9AD0400EAF7B0 /* Extensions */,
 				ACCD2E1326BA5BA200C550A8 /* Modifiers */,
 			);
@@ -632,11 +647,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC423AAD26BF35F400BD54F6 /* UserService.swift in Sources */,
+				AC423AB826BF36F000BD54F6 /* AuthPublisher.swift in Sources */,
 				AC2E561626B9AC8400EAF7B0 /* Main.swift in Sources */,
 				AC18C61826BD6416005F13B9 /* FooterView.swift in Sources */,
 				AC2E564326B9AF0D00EAF7B0 /* FooterNavigatorView.swift in Sources */,
 				ACCD2DF526BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				AC2E563726B9AD4800EAF7B0 /* Color.swift in Sources */,
+				AC423ACD26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */,
 				AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
 				ACDC23DB26B9CE2200D26B66 /* ModuleWrapper.swift in Sources */,
 				AC4239CA26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */,
@@ -644,6 +662,7 @@
 				ACCD2E3426BA608E00C550A8 /* PrimaryButtonView.swift in Sources */,
 				AC2E569C26B9B8CA00EAF7B0 /* NavigationManager.swift in Sources */,
 				ACCD2E1626BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
+				AC423AC626BF3B7200BD54F6 /* LoginView.swift in Sources */,
 				AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,12 +671,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC423ACE26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */,
 				AC6F4B8E26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
 				AC6F4B7426BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
 				ACCD2E1726BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
+				AC423AC726BF3B7200BD54F6 /* LoginView.swift in Sources */,
 				ACCD2DF626BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				AC2E561726B9AC8400EAF7B0 /* Main.swift in Sources */,
 				AC4239CB26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */,
+				AC423AB926BF36F000BD54F6 /* AuthPublisher.swift in Sources */,
 				ACCD2E3526BA608E00C550A8 /* PrimaryButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
