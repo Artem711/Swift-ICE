@@ -13,7 +13,7 @@ final class AuthViewModel: ObservableObject {
     private var allowNext: Bool { self.currentStep != AuthNavigationStep.allCases.last }
     private var allowBack: Bool { self.currentStep != AuthNavigationStep.allCases.first }
     
-    func nextScreen() { if self.allowNext { self.currentStep = self.currentStep.next()} }
-    func backScreen() { if self.allowBack { self.currentStep = self.currentStep.previous()} }
+    func moveToNextScreen() { if self.allowNext { self.currentStep = self.currentStep.next()} }
+    func moveToBackScreen() { if self.allowBack { self.currentStep = self.currentStep.previous()} }
 }
 

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AC18C61826BD6416005F13B9 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC18C61726BD6416005F13B9 /* FooterView.swift */; };
+		AC1DF60D26C53AD10082EEE9 /* DateFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DF60C26C53AD10082EEE9 /* DateFieldView.swift */; };
+		AC1DF61B26C53B5C0082EEE9 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DF61A26C53B5C0082EEE9 /* TextFieldView.swift */; };
+		AC1DF62126C53BDC0082EEE9 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DF62026C53BDC0082EEE9 /* Text.swift */; };
 		AC2E560926B9AC8400EAF7B0 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E560826B9AC8400EAF7B0 /* Tests_iOS.swift */; };
 		AC2E561426B9AC8400EAF7B0 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E561326B9AC8400EAF7B0 /* Tests_macOS.swift */; };
 		AC2E561626B9AC8400EAF7B0 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E55ED26B9AC7C00EAF7B0 /* Main.swift */; };
@@ -67,6 +70,9 @@
 
 /* Begin PBXFileReference section */
 		AC18C61726BD6416005F13B9 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		AC1DF60C26C53AD10082EEE9 /* DateFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFieldView.swift; sourceTree = "<group>"; };
+		AC1DF61A26C53B5C0082EEE9 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		AC1DF62026C53BDC0082EEE9 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		AC2E55ED26B9AC7C00EAF7B0 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		AC2E55EF26B9AC8300EAF7B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2E55F426B9AC8300EAF7B0 /* ICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC1DF60B26C53A3D0082EEE9 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				AC1DF60C26C53AD10082EEE9 /* DateFieldView.swift */,
+				AC1DF61A26C53B5C0082EEE9 /* TextFieldView.swift */,
+			);
+			path = Fields;
+			sourceTree = "<group>";
+		};
 		AC2CC98326BD496A009842A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +251,7 @@
 			children = (
 				AC2E563626B9AD4800EAF7B0 /* Color.swift */,
 				AC5EA5D426C4EC5900FEA365 /* CaseIterable.swift */,
+				AC1DF62026C53BDC0082EEE9 /* Text.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,8 +328,8 @@
 		AC2E568726B9B57200EAF7B0 /* Fragments */ = {
 			isa = PBXGroup;
 			children = (
+				AC1DF60B26C53A3D0082EEE9 /* Fields */,
 				AC6F4B7126BD9C4A00EF1442 /* Shapes */,
-				ACCD2E0826BA55DB00C550A8 /* Inputs */,
 				AC2E568126B9B52C00EAF7B0 /* Buttons */,
 			);
 			path = Fragments;
@@ -440,13 +456,6 @@
 				AC4239E026BF047600BD54F6 /* Views */,
 			);
 			path = Shapes;
-			sourceTree = "<group>";
-		};
-		ACCD2E0826BA55DB00C550A8 /* Inputs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Inputs;
 			sourceTree = "<group>";
 		};
 		ACCD2E1326BA5BA200C550A8 /* Modifiers */ = {
@@ -669,9 +678,11 @@
 				AC5EA5D526C4EC5900FEA365 /* CaseIterable.swift in Sources */,
 				ACCD2DF526BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				AC2E563726B9AD4800EAF7B0 /* Color.swift in Sources */,
+				AC1DF61B26C53B5C0082EEE9 /* TextFieldView.swift in Sources */,
 				AC5EA5CB26C4E51700FEA365 /* AuthNavigationManager.swift in Sources */,
 				AC423ACD26BF3BB600BD54F6 /* AuthViewModel.swift in Sources */,
 				AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
+				AC1DF60D26C53AD10082EEE9 /* DateFieldView.swift in Sources */,
 				ACDC23DB26B9CE2200D26B66 /* ModuleWrapper.swift in Sources */,
 				AC4239CA26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */,
 				AC2E568C26B9B5D600EAF7B0 /* ScrollerView.swift in Sources */,
@@ -679,6 +690,7 @@
 				AC2E569C26B9B8CA00EAF7B0 /* NavigationManager.swift in Sources */,
 				ACCD2E1626BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
 				AC423AC626BF3B7200BD54F6 /* AuthView.swift in Sources */,
+				AC1DF62126C53BDC0082EEE9 /* Text.swift in Sources */,
 				AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
