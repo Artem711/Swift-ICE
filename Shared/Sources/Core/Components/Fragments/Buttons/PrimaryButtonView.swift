@@ -1,3 +1,4 @@
+
 //
 //  PrimaryButtonView.swift
 //  ICE
@@ -9,37 +10,25 @@ import SwiftUI
 
 struct PrimaryButtonView: View {
     typealias ActionHandler = () -> Void
+    let handler: ActionHandler = {}
+    let component: PrimaryButtonComponent
     
-    let title: String
-    let backgroundColor: Color
-    let foregroundColor: Color
-    let borderColor: Color
-    let handler: ActionHandler
-    
-    internal init(title: String,
-                  backgroundColor: Color = Color.theme.accent,
-                  foregroundColor: Color = Color.theme.text,
-                  borderColor: Color = .clear,
-                  handler: @escaping Self.ActionHandler) {
-        self.title = title
-        self.backgroundColor = backgroundColor
-        self.foregroundColor = foregroundColor
-        self.borderColor = borderColor
-        self.handler = handler
+    internal init(component: PrimaryButtonComponent) {
+        self.component = component
     }
     
     var body: some View {
         Button(action: self.handler) {
-            Text(self.title)
+            Text(self.component.title)
                 .frame(maxWidth: .infinity, maxHeight: 50)
         }
-        .background(self.backgroundColor)
-        .foregroundColor(self.foregroundColor)
+        .background(self.component.backgroundColor)
+        .foregroundColor(self.component.foregroundColor)
         .font(.system(size: 16, weight: .bold))
         .cornerRadius(self.CORNER_RADIUS)
         .overlay(
             RoundedRectangle(cornerRadius: self.CORNER_RADIUS)
-                .stroke(self.borderColor, lineWidth: 2)
+                .stroke(self.component.borderColor, lineWidth: 2)
         )
     }
     
@@ -48,7 +37,7 @@ struct PrimaryButtonView: View {
 
 struct PrimaryButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryButtonView(title: "Login") {}
+        PrimaryButtonView(component: .init(title: "Hello"))
             .previewComponent(with: "PrimaryButton")
     }
 }

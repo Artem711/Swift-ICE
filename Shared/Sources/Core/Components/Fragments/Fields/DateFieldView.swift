@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DateFieldView: View {
+    let component: DateFieldComponent
     var body: some View {
         VStack(alignment: .leading) {
             DatePicker("", selection: .constant(Date()), displayedComponents: [.date])
@@ -21,7 +22,7 @@ struct DateFieldView: View {
 
 struct DateFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        DateFieldView()
+        DateFieldView(component: .init(mode: .date))
             .previewComponent(with: "DateField View")
     }
 }

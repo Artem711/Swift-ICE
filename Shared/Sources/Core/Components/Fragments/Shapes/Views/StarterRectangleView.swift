@@ -48,12 +48,12 @@ struct StarterRectangleView: View {
                     .font(.caption2)
                 .lineLimit(3)
             Spacer()
-                PrimaryButtonView(title: "Get started", backgroundColor: Color.theme.text) {
-                    print("clicked")
-                    withAnimation {
-                        self.hasInitiatedSection = true
-                    }
-                }
+//                PrimaryButtonView(title: "Get started", backgroundColor: Color.theme.text) {
+//                    print("clicked")
+//                    withAnimation {
+//                        self.hasInitiatedSection = true
+//                    }
+//                }
             Spacer()
         }.padding(.vertical, 10)
         .background(Color.theme.cardLayerOne)
