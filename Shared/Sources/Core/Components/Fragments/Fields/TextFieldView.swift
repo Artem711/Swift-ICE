@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct TextFieldView: View {
+    let component: TextFieldComponent
     var body: some View {
         VStack(alignment: .leading) {
-            TextField("Placeholder here", text: .constant(""))
+            TextField(self.component.placeholder, text: .constant(""))
                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
                 .padding(.leading, 5)
-                .keyboardType(.default)
+                .keyboardType(self.component.keyboardType)
                 .background(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.gray.opacity(0.25))
@@ -26,7 +27,7 @@ struct TextFieldView: View {
 
 struct TextFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        TextFieldView()
+        TextFieldView(component: .init(placeholder: "Test placeholder"))
             .previewComponent(with: "TextField View")
     }
 }

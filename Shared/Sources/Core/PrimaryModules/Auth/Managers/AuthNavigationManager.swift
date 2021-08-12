@@ -26,9 +26,9 @@ enum AuthNavigationStep: CaseIterable {
     var fields: [FormComponent] {
         switch self {
         case .email:
-            return [TextFormComponent(placeholder: "Hello email")]
+            return [TextFieldComponent(placeholder: "Hello email")]
         default:
-            return [TextFormComponent(placeholder: "Hello default")]
+            return [TextFieldComponent(placeholder: "Hello default")]
         }
     }
     
@@ -57,9 +57,22 @@ protocol FormField: Identifiable {
 class FormComponent: FormField {
     var id = UUID()
     var value: Any?
+    
+    @ViewBuilder func view(component: FormComponent) -> some View {
+        switch self {
+        case is TextFieldComponent:
+            TextFieldView(component: component)
+        case is DateFieldComponent:
+            DateFieldView()
+        case is PrimaryButtonComponent:
+            PrimaryButtonView(title: "", handler: {})
+        default:
+            EmptyView()
+        }
+    }
 }
 
-final class TextFormComponent: FormComponent {
+final class TextFieldComponent: FormComponent {
     let placeholder: String
     let keyboardType: UIKeyboardType
     
@@ -69,14 +82,14 @@ final class TextFormComponent: FormComponent {
     }
 }
 
-final class DateFormComponent: FormComponent {
+final class DateFieldComponent: FormComponent {
     let mode: UIDatePicker.Mode
     init(mode: UIDatePicker.Mode) {
         self.mode = mode
     }
 }
 
-final class ButtonFormComponent: FormComponent {
+final class PrimaryButtonComponent: FormComponent {
     let title: String
     init(title: String) {
         self.title = title

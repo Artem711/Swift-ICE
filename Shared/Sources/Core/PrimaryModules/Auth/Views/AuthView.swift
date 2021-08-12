@@ -12,11 +12,24 @@ struct AuthView: View {
     @StateObject private var viewModel = AuthViewModel()
     
     var body: some View {
+        VStack {
+            self.header.padding(.horizontal)
             TabView(selection: self.$viewModel.currentStep) {
-                    AuthNavigationStep.list(viewModel: self.viewModel) }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .animation(.easeInOut)
-                    .transition(.slide)
+                        AuthNavigationStep.list(viewModel: self.viewModel) }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .animation(.easeInOut)
+                        .transition(.slide)
+        }
+    }
+    
+    private var header: some View {
+        HStack {
+            Button(action: self.viewModel.moveToBackScreen, label: {
+                Label("Back icon", systemImage: "42.circle").labelStyle(IconOnlyLabelStyle())
+            })
+            Spacer()
+            Label("Question icon", systemImage: "42.circle").labelStyle(IconOnlyLabelStyle())
+        }
     }
 }
 
@@ -31,21 +44,11 @@ extension AuthNavigationStep {
         
         var body: some View {
             VStack {
-                self.item.header(back: self.viewModel.moveToBackScreen)
                 self.item.midheader()
-                Spacer()
                 self.item.body(items: self.item.fields)
                 self.item.footer(next: self.viewModel.moveToNextScreen)
-            }
-            .padding(.horizontal)
-        }
-    }
-    
-    private func header(back: @escaping () -> ()) -> some View {
-        HStack {
-            Label("Back icon", systemImage: "42.circle").labelStyle(IconOnlyLabelStyle())
-            Spacer()
-            Label("Question icon", systemImage: "42.circle").labelStyle(IconOnlyLabelStyle())
+                Spacer()
+            }.padding(.horizontal)
         }
     }
     
@@ -54,14 +57,14 @@ extension AuthNavigationStep {
             Text(self.text.title).titleTextStyle()
             Text(self.text.description).subtitleTextStyle()
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical)
     }
     
     private func body(items: [FormComponent]) -> some View {
-        VStack {
+        LazyVGrid(columns: [GridItem(.flexible(minimum: 44))], spacing: 20) {
             ForEach(items) { item in
-                
+                item.view
             }
         }
     }
@@ -87,6 +90,10 @@ extension AuthNavigationStep {
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthView()
+        Group {
+            AuthView()
+//            AuthView()
+//                .preferredColorScheme(.dark)
+        }
     }
 }
