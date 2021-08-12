@@ -18,7 +18,7 @@ struct ICEApp: App {
             if appState.isLoggedIn {
                 FooterNavigatorView()
             } else {
-                Text("LoginView")
+                AuthView()
             }
         }
     }

@@ -279,7 +279,7 @@ struct ModuleDistributorView<T: ModuleNavigator>: View {
     
     var body: some View {
         if self.hasInitiatedSection {
-            Text("Hello")
+            Text(self.userDefaultsIdentifier)
         } else {
             StarterRectangleView(data: self.navigator.previewData, userDefaultsIdentifier:  self.userDefaultsIdentifier)
         }

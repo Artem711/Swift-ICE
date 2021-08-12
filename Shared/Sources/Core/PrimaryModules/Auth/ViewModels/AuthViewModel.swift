@@ -5,34 +5,15 @@
 //  Created by Артём Мошнин on 8/8/21.
 //
 
-import Foundation
+import SwiftUI
+import Combine
 
 final class AuthViewModel: ObservableObject {
-    private let ageLimit = 18
+    @Published var currentStep: AuthNavigationStep = AuthNavigationStep.allCases.first ?? AuthNavigationStep.email
+    private var allowNext: Bool { self.currentStep != AuthNavigationStep.allCases.last }
+    private var allowBack: Bool { self.currentStep != AuthNavigationStep.allCases.first }
     
-    @Published var password = ""
-    @Published var email = ""
-    @Published var firstName = ""
-    @Published var lastName = ""
-    
-    // Address
-    @Published var street = ""
-    @Published var building = ""
-    @Published var postalCode = ""
-    @Published var city = ""
-    @Published var country = ""
-    
-    @Published var isValid = false
-    
-    @Published private(set) var dateOfBirth = Date()
-    @Published private(set) var isAdult = false
-    
-    func setDateOfBirth(date: Date) {
-        self.dateOfBirth = date
-        if let calculatedYear = Calendar.current.dateComponents([.year], from: date, to: Date()).year, calculatedYear < self.ageLimit {
-            self.isAdult = false
-            return
-        }
-        self.isAdult = true
-    }
+    func nextScreen() { if self.allowNext { self.currentStep = self.currentStep.next()} }
+    func backScreen() { if self.allowBack { self.currentStep = self.currentStep.previous()} }
 }
+
