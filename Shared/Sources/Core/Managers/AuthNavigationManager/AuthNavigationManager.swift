@@ -11,24 +11,24 @@ protocol AuthNavigationStepper: CaseIterable, Identifiable {
     associatedtype T: View
     
     static var list: T { get }
-    var text: (title: String, description: String, fields: [FormComponent]) { get }
+    var text: (title: String, description: String) { get }
 }
 
 enum AuthNavigationStep: AuthNavigationStepper {
     case phoneNumber, verifyPhoneNumber,createPasscode, confirmPasscode
     
-    var text: (title: String, description: String, fields: [FormComponent]) {
+    var text: (title: String, description: String) {
         switch self {
         case .phoneNumber:
-            return ("Sign up to ICE", "Please, enter your phone number to create a new account or to log in to an existing one", [PhoneNumberSelectorComponent(), TextFieldComponent(placeholder: "Hello default")])
+            return ("Sign up to ICE", "Please, enter your phone number to create a new account or to log in to an existing one")
         case .verifyPhoneNumber:
-            return ("Verify numebr", "Please enter the code we’ve sent to", [CellsFieldComponent()])
+            return ("Verify numebr", "Please enter the code we’ve sent to")
         case .createPasscode:
-            return ("Create your passcode", "Passcode will be used when entering the app", [PasscodeCellsFieldComponent()])
+            return ("Create your passcode", "Passcode will be used when entering the app" )
         case .confirmPasscode:
-            return ("Confirm your passcode", "Passcode will be used when entering the app", [PasscodeCellsFieldComponent()])
+            return ("Confirm your passcode", "Passcode will be used when entering the app")
         default:
-            return ("","", [TextFieldComponent(placeholder: "Hello default")])
+            return ("","")
         }
     }
     
@@ -39,17 +39,37 @@ struct AuthScreensListView: View {
     @StateObject private var viewModel = AuthViewModel()
     
     var body: some View {
-        TabView(selection: self.$viewModel.currentStep) {
-            ForEach(AuthNavigationStep.allCases) { item in
-                VStack {
-                    self.header
-                    IndividualAuthView(item).tag(item).environmentObject(self.viewModel)
+        
+        VStack {
+            self.header
+            TabView(selection: self.$viewModel.currentStep.animation()) {
+                ForEach(AuthNavigationStep.allCases) { item in
+                     IndividualAuthView(item, content: {self.content(item: item)})
+                        .environmentObject(self.viewModel)
+                        .tag(item)
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .animation(.easeInOut)
+            .transition(.slide)
+        }
+    }
+    
+    private func content(item: AuthNavigationStep) -> some View {
+        VStack {
+            LazyVGrid(columns: [GridItem(.flexible(minimum: 44))], spacing: 20) {
+                switch item {
+                case .phoneNumber:
+                    HStack {
+                        PhoneNumberSelectorView(countryNumbder: self.$viewModel.phoneNumberCountry)
+                        TextFieldView(placeholder: "Mobile number", text: self.$viewModel.phoneNumber)
+                    }
+                default:
+                    Text("dksd")
+//                    TextFieldView(component: )
                 }
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .animation(.easeInOut)
-        .transition(.slide)
     }
     
     private var header: some View {

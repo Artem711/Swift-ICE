@@ -18,16 +18,12 @@ class FormComponent: FormField {
     
     @ViewBuilder func view(component: FormComponent) -> some View {
         switch self {
-        case is TextFieldComponent:
-            TextFieldView(component: component as! TextFieldComponent)
         case is DateFieldComponent:
             DateFieldView(component: component as! DateFieldComponent)
         case is CellsFieldComponent:
             CellsFieldView(component: component as! CellsFieldComponent)
         case is PasscodeCellsFieldComponent:
             PasscodeCellsFieldView(component: component as! PasscodeCellsFieldComponent)
-        case is PhoneNumberSelectorComponent:
-            PhoneNumberSelectorView(component: component as! PhoneNumberSelectorComponent)
         case is PrimaryButtonComponent:
             PrimaryButtonView(component: component as! PrimaryButtonComponent)
         default:
@@ -36,15 +32,6 @@ class FormComponent: FormField {
     }
 }
 
-final class TextFieldComponent: FormComponent {
-    let placeholder: String
-    let keyboardType: UIKeyboardType
-    
-    init(placeholder: String, keyboardType: UIKeyboardType = .default) {
-        self.placeholder = placeholder
-        self.keyboardType = keyboardType
-    }
-}
 
 final class DateFieldComponent: FormComponent {
     let mode: DatePickerComponents
@@ -61,9 +48,6 @@ final class PasscodeCellsFieldComponent: FormComponent {
 //    init() {}
 }
 
-final class PhoneNumberSelectorComponent: FormComponent {
-//    init() {}
-}
 
 final class PrimaryButtonComponent: FormComponent {
     let title: String

@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-struct IndividualAuthView: View {
+struct IndividualAuthView<Content: View>: View {
     @EnvironmentObject private var viewModel: AuthViewModel
     let item: AuthNavigationStep
+    let content: Content
     
-    internal init(_ item: AuthNavigationStep) {
+    internal init(_ item: AuthNavigationStep, @ViewBuilder content: @escaping () -> Content) {
         self.item = item
+        self.content = content()
     }
     
     var body: some View {
         VStack {
             self.midheader()
-            self.body(items: self.item.text.fields)
+            self.content
             self.footer(next: self.viewModel.moveToNextScreen)
             Spacer()
         }.padding(.horizontal)
@@ -32,15 +34,7 @@ struct IndividualAuthView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical)
     }
-
-    private func body(items: [FormComponent]) -> some View {
-        LazyVGrid(columns: [GridItem(.flexible(minimum: 44))], spacing: 20) {
-            ForEach(items) { item in
-                item.view(component: item)
-            }
-        }
-    }
-
+    
     private func footer(next: @escaping () -> ()) -> some View {
         HStack {
             Spacer()
@@ -48,22 +42,11 @@ struct IndividualAuthView: View {
         }
     }
 
-    private func backButton(back: @escaping () -> ()) -> some View {
-        Button(action: back) {
-            HStack {
-                Image("ic_back")
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
-                Text("Go back")
-            }
-        }
-    }
-
 }
 
-struct IndividualAuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        IndividualAuthView(AuthNavigationStep.verifyPhoneNumber)
-            .environmentObject(AuthViewModel())
-    }
-}
+//struct IndividualAuthView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        IndividualAuthView(AuthNavigationStep.verifyPhoneNumber, content: {Text("Hello")})
+//            .environmentObject(AuthViewModel())
+//    }
+//}

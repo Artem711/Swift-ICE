@@ -8,12 +8,27 @@
 import SwiftUI
 import Combine
 
+typealias LocalAuthNavigation = AuthNavigationStep
 final class AuthViewModel: ObservableObject {
-    @Published var currentStep: AuthNavigationStep = AuthNavigationStep.allCases.first ?? AuthNavigationStep.phoneNumber
-    private var allowNext: Bool { self.currentStep != AuthNavigationStep.allCases.last }
-    private var allowBack: Bool { self.currentStep != AuthNavigationStep.allCases.first }
+    @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first ?? LocalAuthNavigation.phoneNumber
+    var allowNext: Bool { self.currentStep != LocalAuthNavigation.allCases.last }
+    private var allowBack: Bool { self.currentStep != LocalAuthNavigation.allCases.first }
     
-    func moveToNextScreen() { if self.allowNext { self.currentStep = self.currentStep.next()} }
+    @Published var loading = false
+    @Published var phoneNumberCountry: CountryPhoneCode = .spain
+    @Published var phoneNumber: String = ""
+    @Published var passcode = ""
+    @Published var passcodeVerification = ""
+    
+    func moveToNextScreen() { if self.allowNext {
+        guard self.currentStep != .phoneNumber else {
+            return
+        }
+        self.moveNext()
+    } }
+    
     func moveToBackScreen() { if self.allowBack { self.currentStep = self.currentStep.previous()} }
+    
+    private func moveNext() { self.currentStep = self.currentStep.next() }
 }
 
