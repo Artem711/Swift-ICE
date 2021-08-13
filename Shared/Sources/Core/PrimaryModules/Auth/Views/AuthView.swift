@@ -15,7 +15,7 @@ struct AuthView: View {
         VStack {
             self.header.padding(.horizontal)
             TabView(selection: self.$viewModel.currentStep) {
-                        AuthNavigationStep.list(viewModel: self.viewModel) }
+                AuthNavigationStepStart.list(viewModel: self.viewModel) }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                         .animation(.easeInOut)
                         .transition(.slide)
