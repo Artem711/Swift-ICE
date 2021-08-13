@@ -62,6 +62,7 @@ struct RegistrationMenuView: View {
                     }
                 }
             }
+            .padding(.top)
         }
     }
 }

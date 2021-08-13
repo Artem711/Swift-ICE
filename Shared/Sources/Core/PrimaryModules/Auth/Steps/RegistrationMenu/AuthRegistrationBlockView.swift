@@ -16,9 +16,12 @@ struct AuthRegistrationBlockView: View {
     
     var body: some View {
         HStack {
-            self.statusCircle
-            if self.comlpetionStatus == .completing { self.openedContent } else { self.closedContent }
+            self.statusCircle.padding(.top, self.CIRCLE_TOP_PADDING)
+            Spacer()
+            Group {if self.comlpetionStatus == .completing { self.openedContent } else { self.closedContent }}
+                .frame(maxWidth: .infinity, alignment: .topLeading)
         }
+        .padding(.bottom, self.BLOCK_BOTTOM_PADDING)
     }
     
     private var statusCircle: some View {
@@ -77,10 +80,12 @@ struct AuthRegistrationBlockView: View {
     
     // MARK: - Block constants
     private let BLOCK_CORNER_RADIUS: CGFloat = 10
+    private let BLOCK_BOTTOM_PADDING: CGFloat = 5
     // MARK: - Circle constants
     private let CIRCLE_SIZE: CGFloat = 26
     private let CIRLE_LINE_WIDTH: CGFloat = 2
     private let CIRCLE_TRAILING_PADDING: CGFloat = 10
+    private let CIRCLE_TOP_PADDING: CGFloat = 3
     // MARK: - Badge constants
     private let BADGE_HORIZONTAL_PADDING: CGFloat  = 7
     private let BADGE_VERTICAL_PADDING: CGFloat  = 4
