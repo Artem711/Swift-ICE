@@ -9,10 +9,18 @@ import SwiftUI
 import Combine
 
 struct AuthView: View {
+    @State private var goToRegistration: Bool = false
     var body: some View {
-        VStack {
-                AuthStartView()
-            
+        NavigationView {
+            VStack {
+                AuthStartView(goToRegistration: self.$goToRegistration)
+                NavigationLink(destination:
+                                RegistrationMenuView()
+                                .navigationBarTitle("").navigationBarTitleDisplayMode(.inline),
+                    isActive: self.$goToRegistration) { EmptyView() }
+                .hidden()
+            }
+            .navigationBarHidden(true)
             
         }
     }
@@ -21,23 +29,7 @@ struct AuthView: View {
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AuthView()
-                .preferredColorScheme(.dark)
+            AuthView().preferredColorScheme(.dark)
         }
     }
-}
-
-enum AuthSteps {
-    // Start
-    case start
-    
-    // Login
-    case login
-    
-    // Registration
-    case registrationMenu
-    case personalData
-    case identification
-    case investorProfile
-    case experienceCustomisation
 }

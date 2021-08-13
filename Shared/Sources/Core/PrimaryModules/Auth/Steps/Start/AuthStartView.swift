@@ -10,7 +10,9 @@ import SwiftUI
 
 
 struct AuthStartView: View {
-    private typealias LocalAuthNavigation = AuthNavigationStep
+    private typealias LocalAuthNavigation = AuthStartStep
+    
+    @Binding var goToRegistration: Bool
     @StateObject private var viewModel = AuthStartViewModel()
     
     var body: some View {
@@ -18,7 +20,7 @@ struct AuthStartView: View {
             self.header
             TabView(selection: self.$viewModel.currentStep) {
                 ForEach(LocalAuthNavigation.allCases) { item in
-                    AuthWrapperView(item, moveToNextScreen: self.viewModel.moveToNextScreen, content: {self.content(item: item)})
+                    AuthWrapperView(item, content: {self.content(item: item)}, moveToNextScreen: self.moveToNextScreen)
                         .environmentObject(self.viewModel)
                         .tag(item)
                 }
@@ -26,6 +28,15 @@ struct AuthStartView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .animation(.easeInOut)
             .transition(.slide)
+        }
+    }
+    
+    private func moveToNextScreen() {
+        if self.viewModel.currentStep == LocalAuthNavigation.allCases.last {
+            self.goToRegistration = true
+            print("dskjdnsajkdsa")
+        } else {
+            self.viewModel.moveToNextScreen()
         }
     }
     

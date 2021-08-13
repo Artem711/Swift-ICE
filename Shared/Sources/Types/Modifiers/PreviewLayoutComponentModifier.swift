@@ -9,10 +9,18 @@ import SwiftUI
 
 struct PreviewLayoutComponentModifier: ViewModifier {
     let name: String
+    let darkOnly: Bool
+    
+    init(name: String, darkOnly: Bool = false) {
+        self.name = name
+        self.darkOnly = darkOnly
+    }
     
     func body(content: Content) -> some View {
         Group {
-            content
+            if !self.darkOnly {
+                content
+            }
             content
                 .preferredColorScheme(.dark)
         }
@@ -23,7 +31,7 @@ struct PreviewLayoutComponentModifier: ViewModifier {
 }
 
 extension View {
-    func previewComponent(with name: String) -> some View {
-        self.modifier(PreviewLayoutComponentModifier(name: name))
+    func previewComponent(with name: String, darkOnly: Bool = false) -> some View {
+        self.modifier(PreviewLayoutComponentModifier(name: name, darkOnly: darkOnly))
     }
 }

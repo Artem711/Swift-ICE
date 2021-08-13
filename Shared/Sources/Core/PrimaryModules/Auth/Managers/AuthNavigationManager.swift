@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-protocol AuthNavigationStepper: CaseIterable, Identifiable {
+protocol AuthNavigationManager: CaseIterable, Identifiable {
     var text: (title: String, description: String) { get }
 }
 
-enum AuthNavigationStep: AuthNavigationStepper {
+enum AuthStartStep: AuthNavigationManager {
     case phoneNumber, verifyPhoneNumber,createPasscode, confirmPasscode
     
     var text: (title: String, description: String) {
@@ -30,6 +30,18 @@ enum AuthNavigationStep: AuthNavigationStepper {
     }
 }
 
-extension AuthNavigationStep: Identifiable {
+extension AuthStartStep: Identifiable {
+    var id: Self { self }
+}
+
+enum AuthRegistrationMenuStep: AuthNavigationManager {
+    case home
+    
+    var text: (title: String, description: String) {
+        return ("Account created", "Just a few more steps - and you will be able to start investing. We are required to collect this data by law.")
+    }
+}
+
+extension AuthRegistrationMenuStep: Identifiable {
     var id: Self { self }
 }

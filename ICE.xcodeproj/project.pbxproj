@@ -12,6 +12,10 @@
 		AC14002126C6FBEE00147ABB /* RegistrationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14001026C6FA5A00147ABB /* RegistrationMenuView.swift */; };
 		AC14002726C6FC1600147ABB /* AuthStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14002626C6FC1600147ABB /* AuthStartView.swift */; };
 		AC14006F26C704C100147ABB /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14006E26C704C100147ABB /* NumberPadView.swift */; };
+		AC14007E26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */; };
+		AC14007F26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */; };
+		AC14008926C718EF00147ABB /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14008826C718EF00147ABB /* Int.swift */; };
+		AC14008A26C718EF00147ABB /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14008826C718EF00147ABB /* Int.swift */; };
 		AC14FFE226C6F1EE00147ABB /* CountryPhonesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14FFE126C6F1EE00147ABB /* CountryPhonesListView.swift */; };
 		AC14FFF526C6F22A00147ABB /* CountryPhoneCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14FFF426C6F22A00147ABB /* CountryPhoneCode.swift */; };
 		AC18C61826BD6416005F13B9 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC18C61726BD6416005F13B9 /* FooterView.swift */; };
@@ -82,6 +86,8 @@
 		AC14001026C6FA5A00147ABB /* RegistrationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationMenuView.swift; sourceTree = "<group>"; };
 		AC14002626C6FC1600147ABB /* AuthStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStartView.swift; sourceTree = "<group>"; };
 		AC14006E26C704C100147ABB /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
+		AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationBlockView.swift; sourceTree = "<group>"; };
+		AC14008826C718EF00147ABB /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		AC14FFE126C6F1EE00147ABB /* CountryPhonesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPhonesListView.swift; sourceTree = "<group>"; };
 		AC14FFF426C6F22A00147ABB /* CountryPhoneCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPhoneCode.swift; sourceTree = "<group>"; };
 		AC18C61726BD6416005F13B9 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				AC14001026C6FA5A00147ABB /* RegistrationMenuView.swift */,
+				AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */,
 			);
 			path = RegistrationMenu;
 			sourceTree = "<group>";
@@ -358,6 +365,7 @@
 				AC2E563626B9AD4800EAF7B0 /* Color.swift */,
 				AC5EA5D426C4EC5900FEA365 /* CaseIterable.swift */,
 				AC1DF62026C53BDC0082EEE9 /* Text.swift */,
+				AC14008826C718EF00147ABB /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -752,9 +760,11 @@
 				AC1DF61B26C53B5C0082EEE9 /* TextFieldView.swift in Sources */,
 				ACB5A12426C6C57E0052316C /* PhoneNumberSelectorView.swift in Sources */,
 				AC5EA5CB26C4E51700FEA365 /* AuthNavigationManager.swift in Sources */,
+				AC14007E26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */,
 				ACB5A11E26C6C51C0052316C /* CellsFieldView.swift in Sources */,
 				AC423ACD26BF3BB600BD54F6 /* AuthStartViewModel.swift in Sources */,
 				AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
+				AC14008926C718EF00147ABB /* Int.swift in Sources */,
 				AC1DF60D26C53AD10082EEE9 /* DateFieldView.swift in Sources */,
 				ACDC23DB26B9CE2200D26B66 /* NavigationWrapperView.swift in Sources */,
 				AC4239CA26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */,
@@ -777,7 +787,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC14001C26C6FBE900147ABB /* AuthWrapperView.swift in Sources */,
+				AC14008A26C718EF00147ABB /* Int.swift in Sources */,
 				AC6F4B8E26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
+				AC14007F26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */,
 				AC6F4B7426BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
 				AC14002126C6FBEE00147ABB /* RegistrationMenuView.swift in Sources */,
 				ACCD2E1726BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,

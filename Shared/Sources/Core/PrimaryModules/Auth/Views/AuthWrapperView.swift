@@ -7,25 +7,26 @@
 
 import SwiftUI
 
-struct AuthWrapperView<Content: View, NavigationStep: AuthNavigationStepper>: View {
-    typealias MoveNextActionHandler = () -> ()
+struct AuthWrapperView<Content: View, NavigationStep: AuthNavigationManager>: View {
+    typealias MoveNextActionHandler = () -> Void
     
     let item: NavigationStep
-    let moveToNextScreen: MoveNextActionHandler
     let content: Content
+    let moveToNextScreen: MoveNextActionHandler?
     
-    internal init(_ item: NavigationStep, moveToNextScreen: @escaping MoveNextActionHandler, @ViewBuilder content: @escaping () -> Content) {
+    internal init(_ item: NavigationStep, @ViewBuilder content: @escaping () -> Content, moveToNextScreen: MoveNextActionHandler? = nil) {
         self.item = item
-        self.moveToNextScreen = moveToNextScreen
         self.content = content()
+        self.moveToNextScreen = moveToNextScreen
     }
     
     var body: some View {
-        VStack {
+        ScrollView(showsIndicators: false) {
             self.midheader()
             LazyVGrid(columns: [GridItem(.flexible(minimum: 44))], spacing: 20) {self.content}
-            self.footer(next: self.moveToNextScreen)
-            Spacer()
+            if let moveFn = self.moveToNextScreen {
+                self.footer(next: moveFn)
+            }
         }.padding(.horizontal)
     }
     

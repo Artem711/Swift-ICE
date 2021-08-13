@@ -7,16 +7,17 @@
 
 import SwiftUI
 
+
 extension Text {
-    func titleTextStyle() -> some View {
+    func titleTextStyle(reduced: Bool = false) -> some View {
         self
             .fontWeight(.bold)
-            .font(.title)
+            .font(reduced ? .title3 : .title)
             .foregroundColor(Color.theme.text)
     }
-    func subtitleTextStyle() -> some View {
+    func subtitleTextStyle(reduced: Bool = false) -> some View {
         self
-            .font(.subheadline)
+            .font(reduced ? .footnote : .subheadline)
             .foregroundColor(Color.theme.subText)
     }
     func errorTextStyle() -> some View {

@@ -10,7 +10,7 @@ import Combine
 
 
 final class AuthStartViewModel: ObservableObject {
-    typealias LocalAuthNavigation = AuthNavigationStep
+    typealias LocalAuthNavigation = AuthStartStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first ?? LocalAuthNavigation.phoneNumber
     
     var allowNext: Bool { self.currentStep != LocalAuthNavigation.allCases.last }

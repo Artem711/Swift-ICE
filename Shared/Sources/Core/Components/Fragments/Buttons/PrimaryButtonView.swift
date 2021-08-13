@@ -16,7 +16,7 @@ struct PrimaryButtonView: View {
     let foregroundColor: Color
     let borderColor: Color
 
-    internal init(title: String, backgroundColor: Color = .clear, foregroundColor: Color = Color.theme.text, borderColor: Color = .clear, handler: @escaping ActionHandler) {
+    internal init(title: String, backgroundColor: Color = Color.theme.accent, foregroundColor: Color = Color.theme.text, borderColor: Color = .clear, handler: @escaping ActionHandler) {
         self.title = title
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
@@ -39,7 +39,7 @@ struct PrimaryButtonView: View {
         )
     }
     
-    private let CORNER_RADIUS: CGFloat = 10
+    private let CORNER_RADIUS: CGFloat = 6
 }
 
 struct PrimaryButtonView_Previews: PreviewProvider {
