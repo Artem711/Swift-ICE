@@ -37,7 +37,19 @@ struct RegistrationMenuView: View {
     var body: some View {
         AuthWrapperView(AuthRegistrationMenuStep.home) {
             ForEach(RegistrationStep.allCases) { item in
-                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: .completed) {
+                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus:
+                                            {
+                                                let num: Int = (RegistrationStep.allCases.firstIndex(of: item) ?? 0)
+                                                let arrayBefore = RegistrationStep.allCases[0...num]
+                                                if self.selectedStep == item {
+                                                    return .completing
+                                                } else if arrayBefore.contains(self.selectedStep) {
+                                                    return .toBeCompleted
+                                                } else  {
+                                                    return .completed
+                                                }
+                                            }()
+                                          ) {
                     switch item {
                     case .personalData:
                         print("Finished")
