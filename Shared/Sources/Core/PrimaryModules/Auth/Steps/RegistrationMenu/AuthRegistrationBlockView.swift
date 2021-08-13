@@ -17,7 +17,7 @@ struct AuthRegistrationBlockView: View {
     var body: some View {
         HStack {
             self.statusCircle
-            self.content
+            if self.comlpetionStatus == .completing { self.openedContent } else { self.closedContent }
         }
     }
     
@@ -31,19 +31,19 @@ struct AuthRegistrationBlockView: View {
             case .completing:
                 Circle().foregroundColor(Color.theme.accent)
             case .toBeCompleted:
-                Circle().strokeBorder(Color.theme.accent,lineWidth: self.LINE_WIDTH)
+                Circle().strokeBorder(Color.theme.accent, lineWidth: self.CIRLE_LINE_WIDTH)
             }
                 
         }
         .frame(width: self.CIRCLE_SIZE, height: self.CIRCLE_SIZE)
-        .padding(.trailing, 10)
+        .padding(.trailing, self.CIRCLE_TRAILING_PADDING)
     }
     
-    private var content: some View {
+    private var openedContent: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text(self.title)
-                self.timeBadge
+                self.timeBadge(text: "\(self.time) min")
             }
             Text(self.description).subtitleTextStyle(reduced: true)
                 .padding(.top, 1)
@@ -55,8 +55,19 @@ struct AuthRegistrationBlockView: View {
         .cornerRadius(self.BLOCK_CORNER_RADIUS)
     }
     
-    private var timeBadge: some View {
-        Text("\(self.time) min")
+    private var closedContent: some View {
+        HStack {
+            Text(self.title)
+            if self.comlpetionStatus == .completed {
+                self.timeBadge(text: "Make changes")
+            } else {
+                self.timeBadge(text: "\(self.time) min")
+            }
+        }
+    }
+    
+    private func timeBadge(text: String) -> some View {
+        Text(text)
             .font(.caption)
             .foregroundColor(Color.theme.accent)
             .padding(.horizontal, self.BADGE_HORIZONTAL_PADDING)
@@ -68,7 +79,8 @@ struct AuthRegistrationBlockView: View {
     private let BLOCK_CORNER_RADIUS: CGFloat = 10
     // MARK: - Circle constants
     private let CIRCLE_SIZE: CGFloat = 26
-    private let LINE_WIDTH: CGFloat = 2
+    private let CIRLE_LINE_WIDTH: CGFloat = 2
+    private let CIRCLE_TRAILING_PADDING: CGFloat = 10
     // MARK: - Badge constants
     private let BADGE_HORIZONTAL_PADDING: CGFloat  = 7
     private let BADGE_VERTICAL_PADDING: CGFloat  = 4
