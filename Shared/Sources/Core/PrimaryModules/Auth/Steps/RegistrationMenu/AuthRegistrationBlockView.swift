@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+enum AuthRegistrationCompletionStatus {
+    case completed, completing, toBeCompleted
+}
+
 struct AuthRegistrationBlockView: View {
     let title: String
     let description: String
     let time: Int
-    let comlpetionStatus: CompletionStatus
+    let comlpetionStatus: AuthRegistrationCompletionStatus
     let handler: () -> Void
     
     var body: some View {
@@ -90,11 +94,6 @@ struct AuthRegistrationBlockView: View {
     private let BADGE_HORIZONTAL_PADDING: CGFloat  = 7
     private let BADGE_VERTICAL_PADDING: CGFloat  = 4
     private let BADGE_CORNER_RADIUS: CGFloat  = 6
-    
-    
-    enum CompletionStatus {
-        case completed, completing, toBeCompleted
-    }
 }
 
 //struct AuthRegistrationBlockView_Previews: PreviewProvider {

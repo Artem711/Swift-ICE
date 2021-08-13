@@ -37,32 +37,34 @@ struct RegistrationMenuView: View {
     var body: some View {
         AuthWrapperView(AuthRegistrationMenuStep.home) {
             ForEach(RegistrationStep.allCases) { item in
-                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus:
-                                            {
-                                                let num: Int = (RegistrationStep.allCases.firstIndex(of: item) ?? 0)
-                                                let arrayBefore = RegistrationStep.allCases[0...num]
-                                                if self.selectedStep == item {
-                                                    return .completing
-                                                } else if arrayBefore.contains(self.selectedStep) {
-                                                    return .toBeCompleted
-                                                } else  {
-                                                    return .completed
-                                                }
-                                            }()
-                                          ) {
-                    switch item {
-                    case .personalData:
-                        print("Finished")
-                    case .identification:
-                        print("Finished")
-                    case .investorProfile:
-                        print("Finished")
-                    case .experienceCustomisation:
-                        print("Finished")
-                    }
-                }
+                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.handler(item: item) }
             }
             .padding(.top)
+        }
+    }
+    
+    private func handler(item: RegistrationStep) {
+        switch item {
+        case .personalData:
+            self.selectedStep = self.selectedStep.next()
+        case .identification:
+            self.selectedStep = self.selectedStep.next()
+        case .investorProfile:
+            self.selectedStep = self.selectedStep.next()
+        case .experienceCustomisation:
+            print("Finished")
+        }
+    }
+    
+    private func completionStatus(item: RegistrationStep) -> AuthRegistrationCompletionStatus {
+        let num: Int = (RegistrationStep.allCases.firstIndex(of: item) ?? 0)
+        let arrayBefore = RegistrationStep.allCases[0...num]
+        if self.selectedStep == item {
+            return .completing
+        } else if arrayBefore.contains(self.selectedStep) {
+            return .toBeCompleted
+        } else  {
+            return .completed
         }
     }
 }
