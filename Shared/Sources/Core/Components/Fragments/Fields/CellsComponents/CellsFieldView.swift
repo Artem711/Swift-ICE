@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CellsFieldView: View {
-    let component: CellsFieldComponent
     var body: some View {
         Text("Code cells field view")
     }
@@ -16,7 +15,7 @@ struct CellsFieldView: View {
 
 struct CodeCellsFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        CellsFieldView(component: .init())
+        CellsFieldView()
             .previewComponent(with: "CodeCellsField View")
     }
 }

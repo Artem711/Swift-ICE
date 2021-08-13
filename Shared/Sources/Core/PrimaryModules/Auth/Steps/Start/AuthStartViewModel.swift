@@ -8,9 +8,11 @@
 import SwiftUI
 import Combine
 
-typealias LocalAuthNavigation = AuthNavigationStep
-final class AuthViewModel: ObservableObject {
+
+final class AuthStartViewModel: ObservableObject {
+    typealias LocalAuthNavigation = AuthNavigationStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first ?? LocalAuthNavigation.phoneNumber
+    
     var allowNext: Bool { self.currentStep != LocalAuthNavigation.allCases.last }
     private var allowBack: Bool { self.currentStep != LocalAuthNavigation.allCases.first }
     
@@ -21,11 +23,11 @@ final class AuthViewModel: ObservableObject {
     @Published var passcodeVerification = ""
     
     func moveToNextScreen() { if self.allowNext {
-        guard self.currentStep != .phoneNumber else {
-            return
-        }
+//        guard self.currentStep != .phoneNumber else {
+//            return
+//        }
         self.moveNext()
-    } }
+    }}
     
     func moveToBackScreen() { if self.allowBack { self.currentStep = self.currentStep.previous()} }
     

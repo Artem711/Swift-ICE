@@ -51,7 +51,7 @@ enum MainNavigator: String, CaseIterable {
     }
     
     func generator<T: ModuleNavigator>(navigator: T.Type) -> some View where T.AllCases: RandomAccessCollection, T.RawValue: StringProtocol {
-        ModuleWrapper(navigator: navigator.self) {
+        NavigationWrapperView(navigator: navigator.self) {
             ForEach(navigator.allCases) { item in item.previewView.tag(item) }
         }
     }

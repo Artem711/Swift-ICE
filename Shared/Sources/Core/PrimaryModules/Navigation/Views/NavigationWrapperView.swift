@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModuleWrapper<T: ModuleNavigator, Content: View>: View where T.AllCases: RandomAccessCollection, T.RawValue: StringProtocol {
+struct NavigationWrapperView<T: ModuleNavigator, Content: View>: View where T.AllCases: RandomAccessCollection, T.RawValue: StringProtocol {
     let navigator: T.Type
     let content: Content
     @State private var selectedView = T.allCases.first!
@@ -56,14 +56,6 @@ struct ModuleWrapper<T: ModuleNavigator, Content: View>: View where T.AllCases: 
 
 struct ModuleWrapper_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            //            ModuleWrapper(navigator: HomeNavigation.self) {
-            //                Text("dkjs d")
-            //            }
-            ModuleWrapper(navigator: HomeNavigation.self) {
-                Text("dkjs d")
-            }
-            .preferredColorScheme(.dark)
-        }
+            NavigationWrapperView(navigator: HomeNavigation.self) {Text("Test")}.preferredColorScheme(.dark)
     }
 }

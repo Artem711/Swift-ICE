@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PasscodeCellsFieldView: View {
-    let component: PasscodeCellsFieldComponent
     var body: some View {
         Text("PasscodeCellsField View")
     }
@@ -16,7 +15,7 @@ struct PasscodeCellsFieldView: View {
 
 struct PasscodeCellsFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        PasscodeCellsFieldView(component: .init())
+        PasscodeCellsFieldView()
             .previewComponent(with: "PasscodeCellsField view")
     }
 }

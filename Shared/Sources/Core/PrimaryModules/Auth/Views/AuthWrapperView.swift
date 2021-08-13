@@ -7,21 +7,24 @@
 
 import SwiftUI
 
-struct IndividualAuthView<Content: View>: View {
-    @EnvironmentObject private var viewModel: AuthViewModel
-    let item: AuthNavigationStep
+struct AuthWrapperView<Content: View, NavigationStep: AuthNavigationStepper>: View {
+    typealias MoveNextActionHandler = () -> ()
+    
+    let item: NavigationStep
+    let moveToNextScreen: MoveNextActionHandler
     let content: Content
     
-    internal init(_ item: AuthNavigationStep, @ViewBuilder content: @escaping () -> Content) {
+    internal init(_ item: NavigationStep, moveToNextScreen: @escaping MoveNextActionHandler, @ViewBuilder content: @escaping () -> Content) {
         self.item = item
+        self.moveToNextScreen = moveToNextScreen
         self.content = content()
     }
     
     var body: some View {
         VStack {
             self.midheader()
-            self.content
-            self.footer(next: self.viewModel.moveToNextScreen)
+            LazyVGrid(columns: [GridItem(.flexible(minimum: 44))], spacing: 20) {self.content}
+            self.footer(next: self.moveToNextScreen)
             Spacer()
         }.padding(.horizontal)
     }
@@ -44,9 +47,9 @@ struct IndividualAuthView<Content: View>: View {
 
 }
 
-//struct IndividualAuthView_Previews: PreviewProvider {
+//struct AuthWrapperView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        IndividualAuthView(AuthNavigationStep.verifyPhoneNumber, content: {Text("Hello")})
+//        AuthWrapperView(AuthNavigationStep.verifyPhoneNumber, content: {Text("Hello")})
 //            .environmentObject(AuthViewModel())
 //    }
 //}
