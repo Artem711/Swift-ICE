@@ -17,7 +17,7 @@ extension Text {
     }
     func subtitleTextStyle(reduced: Bool = false) -> some View {
         self
-            .font(reduced ? .footnote : .subheadline)
+            .font(reduced ? .caption : .subheadline)
             .foregroundColor(Color.theme.subText)
     }
     func errorTextStyle() -> some View {
