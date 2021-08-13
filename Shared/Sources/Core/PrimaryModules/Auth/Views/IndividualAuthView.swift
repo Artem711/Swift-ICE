@@ -63,7 +63,7 @@ struct IndividualAuthView: View {
 
 struct IndividualAuthView_Previews: PreviewProvider {
     static var previews: some View {
-        IndividualAuthView(AuthNavigationStep.email)
+        IndividualAuthView(AuthNavigationStep.verifyPhoneNumber)
             .environmentObject(AuthViewModel())
     }
 }

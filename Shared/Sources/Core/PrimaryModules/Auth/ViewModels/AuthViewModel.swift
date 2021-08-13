@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 final class AuthViewModel: ObservableObject {
-    @Published var currentStep: AuthNavigationStep = AuthNavigationStep.allCases.first ?? AuthNavigationStep.email
+    @Published var currentStep: AuthNavigationStep = AuthNavigationStep.allCases.first ?? AuthNavigationStep.phoneNumber
     private var allowNext: Bool { self.currentStep != AuthNavigationStep.allCases.last }
     private var allowBack: Bool { self.currentStep != AuthNavigationStep.allCases.first }
     

@@ -22,6 +22,12 @@ class FormComponent: FormField {
             TextFieldView(component: component as! TextFieldComponent)
         case is DateFieldComponent:
             DateFieldView(component: component as! DateFieldComponent)
+        case is CellsFieldComponent:
+            CellsFieldView(component: component as! CellsFieldComponent)
+        case is PasscodeCellsFieldComponent:
+            PasscodeCellsFieldView(component: component as! PasscodeCellsFieldComponent)
+        case is PhoneNumberSelectorComponent:
+            PhoneNumberSelectorView(component: component as! PhoneNumberSelectorComponent)
         case is PrimaryButtonComponent:
             PrimaryButtonView(component: component as! PrimaryButtonComponent)
         default:
@@ -45,6 +51,18 @@ final class DateFieldComponent: FormComponent {
     init(mode: DatePickerComponents) {
         self.mode = mode
     }
+}
+
+final class CellsFieldComponent: FormComponent {
+//    init() {}
+}
+
+final class PasscodeCellsFieldComponent: FormComponent {
+//    init() {}
+}
+
+final class PhoneNumberSelectorComponent: FormComponent {
+//    init() {}
 }
 
 final class PrimaryButtonComponent: FormComponent {
