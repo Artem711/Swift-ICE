@@ -9,12 +9,23 @@ import SwiftUI
 import Combine
 
 
+protocol AuthViewModels: ObservableObject {
+    associatedtype LocalAuthNavigation: AuthNavigationManager
+    var currentStep: LocalAuthNavigation { get set }
+    
+    var allowNext: Bool { get }
+    var allowBack: Bool { get }
+    
+    func moveToNextScreen() -> Void
+    func moveToBackScreen() -> Void
+}
+
 final class AuthStartViewModel: ObservableObject {
     typealias LocalAuthNavigation = AuthStartStep
-    @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first ?? LocalAuthNavigation.phoneNumber
+    @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
     
     var allowNext: Bool { self.currentStep != LocalAuthNavigation.allCases.last }
-    private var allowBack: Bool { self.currentStep != LocalAuthNavigation.allCases.first }
+    var allowBack: Bool { self.currentStep != LocalAuthNavigation.allCases.first }
     
     @Published var loading = false
     @Published var phoneNumberCountry: CountryPhoneCode = .spain
@@ -22,15 +33,7 @@ final class AuthStartViewModel: ObservableObject {
     @Published var passcode = ""
     @Published var passcodeVerification = ""
     
-    func moveToNextScreen() { if self.allowNext {
-//        guard self.currentStep != .phoneNumber else {
-//            return
-//        }
-        self.moveNext()
-    }}
-    
+    func moveToNextScreen() { if self.allowNext { self.currentStep = self.currentStep.next() }}
     func moveToBackScreen() { if self.allowBack { self.currentStep = self.currentStep.previous()} }
-    
-    private func moveNext() { self.currentStep = self.currentStep.next() }
 }
 
