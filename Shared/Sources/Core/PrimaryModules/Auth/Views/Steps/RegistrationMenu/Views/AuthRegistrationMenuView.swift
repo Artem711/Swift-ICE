@@ -18,7 +18,7 @@ struct AuthRegistrationMenuView: View {
             .padding(.top)
             
             NavigationLink(
-                destination: AuthPersonalDataView(endHandler: {    self.viewModel.doneHandler(item: .personalData)
+                destination: AuthAdultPersonalDataView(endHandler: {    self.viewModel.doneHandler(item: .personalData)
 }).navigationBarBackButtonHidden(true),
                 isActive: .constant(self.viewModel.navigateToPersonalData)) {EmptyView()}.hidden()
             

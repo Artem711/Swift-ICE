@@ -30,18 +30,6 @@ final class AuthRegistrationMenuViewModel: ObservableObject {
     
     var navigateToEnd: Bool
     { self.navigate && self.experienceCustomisationDone && self.selectedStep == .experienceCustomisation }
-    
-    // MARK: - PersonalData
-    @Published var dobText = ""
-    @Published var emailText = ""
-    @Published var emailVerificationText = ""
-    @Published var firstNameText = ""
-    @Published var lastNameText = ""
-    @Published var streetText = ""
-    @Published var buildingText = ""
-    @Published var postalCodeText = ""
-    @Published var cityText = ""
-    @Published var countryText = ""
 }
 
 extension AuthRegistrationMenuViewModel {

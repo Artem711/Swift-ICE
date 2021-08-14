@@ -45,35 +45,3 @@ enum AuthRegistrationMenuStep: AuthNavigationManager {
 extension AuthRegistrationMenuStep: Identifiable {
     var id: Self { self }
 }
-
-enum AuthPersonalDataStep: AuthNavigationManager {
-    case dateOfBirth, parentsEmail, parentsQRCode, email, verifyEmail, fullName, homeAddress
-    
-    var text: (title: String, description: String) {
-        switch self {
-        case .dateOfBirth:
-            return ("Date of birth", "As written on your official document. You need to be over 18 to open a full account (over 15 for a custodial account).")
-        case .parentsEmail:
-            return ("Your parent’s email", "We’ve noticed that you are under 18. Please, enter one of your parent’s (or legal guardian’s) email to proceed")
-        case .parentsQRCode:
-            return ("Please, wait...", """
-Email(s) has been sent. Please, tell your parent to
-                check their email or scan the code below and follow
-                the instructions. You will be able to access your account
-                as soon as the parent completes all the steps required.
-""")
-        case .email:
-            return ("What is your email?", "Associate your email to your ICE account.")
-        case .verifyEmail:
-            return ("Verify email", "Please, enter the code we’ve sent to")
-        case .fullName:
-            return ("Name", "As written on your official document. We need your name to verify your identity.")
-        case .homeAddress:
-            return ("Home address", "Enter your home address precisely. We need it to verify your identity.")
-        }
-    }
-}
-
-extension AuthPersonalDataStep: Identifiable {
-    var id: Self { self }
-}
