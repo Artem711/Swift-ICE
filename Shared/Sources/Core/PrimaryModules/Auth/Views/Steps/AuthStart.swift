@@ -7,46 +7,50 @@
 
 import SwiftUI
 
-typealias S = AuthStartStep
 struct AuthStartView: AuthViewProtocol {
-    typealias LocalAuthNavigation = S
+    
+    
+    typealias LocalAuthNavigation = AuthStartStep
     typealias ViewModel = AuthStartViewModel
+    
     @StateObject var viewModel = ViewModel()
     var endHandler: ActionHandler
     var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep) }
     
-    @ViewBuilder func content(item: LocalAuthNavigation) -> some View {
-        switch item {
-        case .phoneNumber:
-            HStack {
-                PhoneNumberSelectorView(countryNumbder: self.$viewModel.phoneNumberCountryText)
-                TextFieldView(placeholder: "Mobile number", text: self.$viewModel.phoneNumberText)
-            }
-        case .verifyPhoneNumber:
-            VStack {
-                CellsFieldView()
+    @ViewBuilder func content(item: LocalAuthNavigation?) -> some View {
+        if let item = item {
+            switch item {
+            case .phoneNumber:
                 HStack {
-                    Text("Didn't receive the code?").subtitleTextStyle()
-                    Spacer()
-                    Text("0:59").subtitleTextStyle()
+                    PhoneNumberSelectorView(countryNumbder: self.$viewModel.phoneNumberCountryText)
+                    TextFieldView(placeholder: "Mobile number", text: self.$viewModel.phoneNumberText)
                 }
-            }
-        case .createPasscode:
-            VStack {
-                CellsFieldView()
-                NumberPadView()
-            }
-        case .confirmPasscode:
-            VStack {
-                CellsFieldView()
-                NumberPadView()
+            case .verifyPhoneNumber:
+                VStack {
+                    CellsFieldView()
+                    HStack {
+                        Text("Didn't receive the code?").subtitleTextStyle()
+                        Spacer()
+                        Text("0:59").subtitleTextStyle()
+                    }
+                }
+            case .createPasscode:
+                VStack {
+                    CellsFieldView()
+                    NumberPadView()
+                }
+            case .confirmPasscode:
+                VStack {
+                    CellsFieldView()
+                    NumberPadView()
+                }
             }
         }
     }
 }
 
 final class AuthStartViewModel: AuthViewModelProtocol {
-    typealias LocalAuthNavigation = S
+    typealias LocalAuthNavigation = AuthStartStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
     @Published var loading = false
     

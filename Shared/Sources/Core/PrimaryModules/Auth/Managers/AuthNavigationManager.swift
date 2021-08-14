@@ -24,8 +24,6 @@ enum AuthStartStep: AuthNavigationManager {
             return ("Create your passcode", "Passcode will be used when entering the app" )
         case .confirmPasscode:
             return ("Confirm your passcode", "Passcode will be used when entering the app")
-        default:
-            return ("","")
         }
     }
 }

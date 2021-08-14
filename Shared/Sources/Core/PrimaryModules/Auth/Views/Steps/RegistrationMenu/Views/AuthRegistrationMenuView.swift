@@ -7,20 +7,35 @@
 
 import SwiftUI
 
+extension NSObject {
+    func propertyNames() -> [String] {
+        let mirror = Mirror(reflecting: self)
+        return mirror.children.compactMap{ $0.label }
+    }
+}
+
 struct AuthRegistrationMenuView: View {
     @StateObject private var viewModel = AuthRegistrationMenuViewModel()
     
+    
     var body: some View {
+        
         AuthWrapperView(AuthRegistrationMenuStep.home) {
             ForEach(RegistrationStep.allCases) { item in
                 AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.viewModel.continueHandler(item: item) }
             }
             .padding(.top)
+
+           
+
+            NavigationLink(
+                destination: AuthAdultPersonalDataView(endHandler: {_ in 
+                    self.viewModel.doneHandler(item: .personalData)}).navigationBarBackButtonHidden(true),
+                isActive: .constant(self.viewModel.navigateToAdultPesrsonalData)) {EmptyView()}.hidden()
             
             NavigationLink(
-                destination: AuthAdultPersonalDataView(endHandler: {    self.viewModel.doneHandler(item: .personalData)
-}).navigationBarBackButtonHidden(true),
-                isActive: .constant(self.viewModel.navigateToPersonalData)) {EmptyView()}.hidden()
+                destination: AuthChildPersonalDataView(endHandler: {_ in }).navigationBarBackButtonHidden(true),
+                isActive: .constant(self.viewModel.navigateToChildrenPersonalData)) {EmptyView()}.hidden()
             
             NavigationLink(
                 destination: AuthIdentificationView(registerViewModel: self.viewModel).navigationBarBackButtonHidden(true),
@@ -33,8 +48,12 @@ struct AuthRegistrationMenuView: View {
             NavigationLink(
                 destination: AuthExperienceCustomisationView(registerViewModel: self.viewModel).navigationBarBackButtonHidden(true),
                 isActive: .constant(self.viewModel.navigateToExperienceCustomisation)) {EmptyView()}.hidden()
+            
         }
+        .sheet(isPresented: self.$viewModel.showBirthDateView)
+            { AuthBirthDateView() { date in self.viewModel.setAdultStatus(date as? Date ?? Date()) } }
     }
+    
     
     private func completionStatus(item: RegistrationStep) -> AuthRegistrationCompletionStatus {
         let num: Int = (RegistrationStep.allCases.firstIndex(of: item) ?? 0)

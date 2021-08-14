@@ -8,39 +8,31 @@
 import SwiftUI
 
 struct AuthBirthDateView: AuthViewProtocol {
-    typealias LocalAuthNavigation = AuthBirthDateStep
+    
+    
+    var endHandler: (Any?) -> ()
+    
+    
     typealias ViewModel = AuthBirthDateViewModel
+    typealias LocalAuthNavigation = AuthBirthDateStep
+    @StateObject var viewModel = AuthBirthDateViewModel()
     
-    @State var viewModel = ViewModel()
-    var endHandler: ActionHandler
-    var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep)}
+    var body: some View { self.wrapper() }
     
-    @ViewBuilder func content(item: LocalAuthNavigation) -> some View {
-        return VStack {
-            
+    @ViewBuilder func content(item: AuthBirthDateStep?) -> some View {
+        VStack {
+            DateFieldView(selectedDate: self.$viewModel.selectedDate, mode: .date)
         }
     }
+  
 }
 
-
 final class AuthBirthDateViewModel: AuthViewModelProtocol {
-    typealias LocalAuthNavigation = AuthBirthDateStep
+    typealias LocalAuthNavigation = AuthAdultPersonalDataStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
     @Published var loading = false
-    var ageLimit: Int
-    
-    init(ageLimit: Int = 18) {
-        self.ageLimit = ageLimit
-    }
-    
-    var isAdult: Bool {
-        if let calculatedYear = Calendar.current.dateComponents([.year], from: self.dateOfBirth, to: Date()).year, calculatedYear < self.ageLimit {
-            return false
-        }
-        return true
-    }
-    
-    @Published var dateOfBirth = Date()
+
+    @Published var selectedDate = Date()
 }
 
 enum AuthBirthDateStep: AuthNavigationManager {

@@ -8,36 +8,36 @@
 import SwiftUI
 
 protocol AuthViewProtocol: View {
-    typealias ActionHandler = () -> Void
+    typealias ActionHandler = (_ value: Any?) -> ()
     associatedtype ViewModel: AuthViewModelProtocol
     associatedtype LocalAuthNavigation: AuthNavigationManager
+    associatedtype Result: View
     
-    associatedtype V: View
-    associatedtype S: View
-    associatedtype D: View
     var viewModel: ViewModel { get }
     var endHandler: ActionHandler { get }
-    func content(item: LocalAuthNavigation) -> V
-    
-    var header: S { get }
-    func wrapper(currentStep: Binding<LocalAuthNavigation>) -> D
+    func content(item: LocalAuthNavigation?) -> Result
     func moveToNextScreen() -> Void
 }
 
 extension AuthViewProtocol {
-    func wrapper(currentStep: Binding<LocalAuthNavigation>) -> some View {
+    func wrapper(currentStep: Binding<LocalAuthNavigation>? = nil) -> some View {
         VStack {
             self.header
-            TabView(selection: currentStep) {
-                ForEach(LocalAuthNavigation.allCases) { item in
-                    AuthWrapperView(item, content: {self.content(item: item)}, moveToNextScreen: self.moveToNextScreen)
-                        .environmentObject(self.viewModel)
-                        .tag(item)
+            if let step = currentStep {
+                TabView(selection: step) {
+                    ForEach(LocalAuthNavigation.allCases) { item in
+                        AuthWrapperView(item, content: {self.content(item: item)}, moveToNextScreen: self.moveToNextScreen)
+                            .tag(item)
+                    }
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .animation(.easeInOut)
+                .transition(.slide)
+            } else {
+                let item = LocalAuthNavigation.allCases.first!
+                HStack{}
+                AuthWrapperView(item, content: {self.content(item: item)})
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .animation(.easeInOut)
-            .transition(.slide)
         }
     }
     
@@ -55,7 +55,7 @@ extension AuthViewProtocol {
     
     
     func moveToNextScreen() {
-        if self.viewModel.currentStep == LocalAuthNavigation.allCases.last as! Self.ViewModel.LocalAuthNavigation { self.endHandler() } else {
+        if self.viewModel.currentStep == LocalAuthNavigation.allCases.last as! Self.ViewModel.LocalAuthNavigation { self.endHandler(nil) } else {
             self.viewModel.moveToNextScreen()
         }
     }

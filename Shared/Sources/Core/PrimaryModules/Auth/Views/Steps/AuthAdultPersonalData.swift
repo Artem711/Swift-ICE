@@ -15,16 +15,18 @@ struct AuthAdultPersonalDataView: AuthViewProtocol {
     var endHandler: ActionHandler
     var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep) }
     
-    @ViewBuilder func content(item: LocalAuthNavigation) -> some View {
-        switch item {
-        case .email:
-            VStack {}
-        case .verifyEmail:
-            VStack {}
-        case .fullName:
-            VStack {}
-        case .homeAddress:
-            VStack {}
+    @ViewBuilder func content(item: LocalAuthNavigation?) -> some View {
+        if let item = item {
+            switch item {
+            case .email:
+                VStack {}
+            case .verifyEmail:
+                VStack {}
+            case .fullName:
+                VStack {}
+            case .homeAddress:
+                VStack {}
+            }
         }
     }
 }

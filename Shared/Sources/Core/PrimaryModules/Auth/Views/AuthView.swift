@@ -13,7 +13,7 @@ struct AuthView: View {
     var body: some View {
         NavigationView {
             VStack {
-                AuthStartView() { self.goToRegistration = true }
+                AuthStartView()  { _ in self.goToRegistration = true }
                 NavigationLink(destination: AuthRegistrationMenuView() .navigationBarHidden(true), isActive: self.$goToRegistration) { EmptyView() }.hidden()
             }
             .navigationBarHidden(true)

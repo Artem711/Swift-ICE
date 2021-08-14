@@ -11,13 +11,29 @@ final class AuthRegistrationMenuViewModel: ObservableObject {
     @Published var selectedStep: RegistrationStep = .personalData
     @Published var navigate = false
     
+    @Published var isAdult: Bool? = nil
+    @Published var showBirthDateView: Bool = false
+    
     @Published var personalDataDone = false
     @Published var identificationDone = false
     @Published var investorProfileDone = false
     @Published var experienceCustomisationDone = false
     
-    var navigateToPersonalData: Bool
-    { self.navigate && self.selectedStep == .personalData }
+    var navigateToBirthDate: Bool
+    { self.navigate && self.selectedStep == .personalData && self.isAdult == nil }
+    
+    private var navigateToPersonalData: Bool
+    { self.navigate && self.selectedStep == .personalData && self.isAdult != nil }
+    
+    var navigateToAdultPesrsonalData: Bool {
+        let x = { () -> Bool in if let isAdult = self.isAdult { return isAdult } else { return false }}()
+        return self.navigateToPersonalData && x
+    }
+    
+    var navigateToChildrenPersonalData: Bool {
+        let x = { () -> Bool in if let isAdult = self.isAdult { return !isAdult } else { return false }}()
+        return self.navigateToPersonalData && x
+    }
     
     var navigateToIdentification: Bool
     { self.navigate && self.selectedStep == .identification }
@@ -36,8 +52,10 @@ extension AuthRegistrationMenuViewModel {
     func continueHandler(item: RegistrationStep) {
         switch item {
         case .personalData:
-            self.selectedStep = .personalData
-            self.navigate = true
+            if self.isAdult != nil {
+                self.selectedStep = .personalData
+                self.navigate = true
+            } else { self.showBirthDateView = true }
         case .identification:
             if self.personalDataDone {
                 self.selectedStep = .identification
@@ -76,7 +94,15 @@ extension AuthRegistrationMenuViewModel {
     }
     
     private func navigateBack() {self.navigate = false}
-}
+    func setAdultStatus(_ date: Date) {
+        if let calculatedYear = Calendar.current.dateComponents([.year], from: date, to: Date()).year, calculatedYear < 18 {
+            self.isAdult = false
+        } else {
+                self.isAdult = true
+            }
+        }
+    }
+
 
 enum RegistrationStep: String, CaseIterable {
     case personalData = "Personal Data"
