@@ -7,45 +7,21 @@
 
 import SwiftUI
 
-
-
-struct AuthStartView: View {
-    private typealias LocalAuthNavigation = AuthStartStep
+struct AuthStartView: AuthViewProtocol {
+    typealias ViewModel = AuthStartViewModel
+    typealias LocalAuthNavigation = AuthStartStep
     
-    @Binding var goToRegistration: Bool
-    @StateObject private var viewModel = AuthStartViewModel()
+    @StateObject var viewModel = ViewModel()
+    var endHandler: ActionHandler
     
-    var body: some View {
-        VStack {
-            self.header
-            TabView(selection: self.$viewModel.currentStep) {
-                ForEach(LocalAuthNavigation.allCases) { item in
-                    AuthWrapperView(item, content: {self.content(item: item)}, moveToNextScreen: self.moveToNextScreen)
-                        .environmentObject(self.viewModel)
-                        .tag(item)
-                }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .animation(.easeInOut)
-            .transition(.slide)
-        }
-    }
+    var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep) }
     
-    private func moveToNextScreen() {
-        if self.viewModel.currentStep == LocalAuthNavigation.allCases.last {
-            self.goToRegistration = true
-            print("dskjdnsajkdsa")
-        } else {
-            self.viewModel.moveToNextScreen()
-        }
-    }
-    
-    @ViewBuilder private func content(item: LocalAuthNavigation) -> some View {
+    @ViewBuilder func content(item: LocalAuthNavigation) -> some View {
         switch item {
         case .phoneNumber:
             HStack {
-                PhoneNumberSelectorView(countryNumbder: self.$viewModel.phoneNumberCountry)
-                TextFieldView(placeholder: "Mobile number", text: self.$viewModel.phoneNumber)
+                PhoneNumberSelectorView(countryNumbder: self.$viewModel.phoneNumberCountryText)
+                TextFieldView(placeholder: "Mobile number", text: self.$viewModel.phoneNumberText)
             }
         case .verifyPhoneNumber:
             VStack {
@@ -67,19 +43,6 @@ struct AuthStartView: View {
                 NumberPadView()
             }
         }
-        
-        
-    }
-    
-    private var header: some View {
-        HStack {
-            Button(action: self.viewModel.moveToBackScreen, label: {
-                Label("Back icon", systemImage: "42.circle").labelStyle(IconOnlyLabelStyle())
-            })
-            Spacer()
-            Label("Question icon", systemImage: "42.circle").labelStyle(IconOnlyLabelStyle())
-        }
-        .padding(.horizontal)
     }
 }
 

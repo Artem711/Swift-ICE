@@ -81,6 +81,8 @@
 		ACFE0A3126C789EE00708CC7 /* AuthExperienceCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2F26C789EE00708CC7 /* AuthExperienceCustomisationView.swift */; };
 		ACFE0A3726C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */; };
 		ACFE0A3826C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */; };
+		ACFE0A4026C7C29000708CC7 /* AuthViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A3F26C7C29000708CC7 /* AuthViewModelProtocol.swift */; };
+		ACFE0A5326C7C91D00708CC7 /* AuthViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A5226C7C91D00708CC7 /* AuthViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,8 @@
 		ACFE0A2826C789D200708CC7 /* AuthInvestorProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInvestorProfileViewModel.swift; sourceTree = "<group>"; };
 		ACFE0A2F26C789EE00708CC7 /* AuthExperienceCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExperienceCustomisationView.swift; sourceTree = "<group>"; };
 		ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExperienceCustomisationViewModel.swift; sourceTree = "<group>"; };
+		ACFE0A3F26C7C29000708CC7 /* AuthViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelProtocol.swift; sourceTree = "<group>"; };
+		ACFE0A5226C7C91D00708CC7 /* AuthViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,9 +265,8 @@
 		AC14007826C7059800147ABB /* RegistrationMenu */ = {
 			isa = PBXGroup;
 			children = (
-				AC14001026C6FA5A00147ABB /* AuthRegistrationMenuView.swift */,
-				ACFE09E626C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift */,
-				AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */,
+				ACFE0A3D26C7C26100708CC7 /* Views */,
+				ACFE0A3E26C7C26A00708CC7 /* ViewModels */,
 			);
 			path = RegistrationMenu;
 			sourceTree = "<group>";
@@ -438,9 +441,10 @@
 		AC2E567B26B9B29D00EAF7B0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				AC14004026C6FCFA00147ABB /* Managers */,
+				ACFE0A4926C7C2E000708CC7 /* Protocols */,
 				AC14004126C6FD0100147ABB /* Steps */,
 				AC14005C26C7000400147ABB /* Views */,
-				AC14004026C6FCFA00147ABB /* Managers */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -621,6 +625,32 @@
 				ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */,
 			);
 			path = ExperienceCustomisation;
+			sourceTree = "<group>";
+		};
+		ACFE0A3D26C7C26100708CC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC14001026C6FA5A00147ABB /* AuthRegistrationMenuView.swift */,
+				AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ACFE0A3E26C7C26A00708CC7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ACFE09E626C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		ACFE0A4926C7C2E000708CC7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				ACFE0A3F26C7C29000708CC7 /* AuthViewModelProtocol.swift */,
+				ACFE0A5226C7C91D00708CC7 /* AuthViewProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -827,6 +857,7 @@
 				AC2E563726B9AD4800EAF7B0 /* Color.swift in Sources */,
 				ACFE0A3026C789EE00708CC7 /* AuthExperienceCustomisationView.swift in Sources */,
 				AC1DF64E26C54B070082EEE9 /* AuthWrapperView.swift in Sources */,
+				ACFE0A4026C7C29000708CC7 /* AuthViewModelProtocol.swift in Sources */,
 				AC1DF61B26C53B5C0082EEE9 /* TextFieldView.swift in Sources */,
 				ACB5A12426C6C57E0052316C /* PhoneNumberSelectorView.swift in Sources */,
 				AC5EA5CB26C4E51700FEA365 /* AuthNavigationManager.swift in Sources */,
@@ -849,6 +880,7 @@
 				ACFE0A2926C789D200708CC7 /* AuthInvestorProfileViewModel.swift in Sources */,
 				ACFE0A1426C789A200708CC7 /* AuthIdentificationView.swift in Sources */,
 				ACFE0A0D26C7898300708CC7 /* AuthPersonalDataViewModel.swift in Sources */,
+				ACFE0A5326C7C91D00708CC7 /* AuthViewProtocol.swift in Sources */,
 				AC14002726C6FC1600147ABB /* AuthStartView.swift in Sources */,
 				ACFE0A2226C789C700708CC7 /* AuthInvestorProfileView.swift in Sources */,
 				AC423AC626BF3B7200BD54F6 /* AuthView.swift in Sources */,

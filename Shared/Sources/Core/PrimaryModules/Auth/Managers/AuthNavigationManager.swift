@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol AuthNavigationManager: CaseIterable, Identifiable {
+protocol AuthNavigationManager: CaseIterable, Identifiable, Hashable, Equatable where AllCases: BidirectionalCollection & RandomAccessCollection {
     var text: (title: String, description: String) { get }
 }
 
