@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthIdentificationView: View {
+    @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
         Text("AuthIdentificationView")
     }
@@ -15,6 +16,6 @@ struct AuthIdentificationView: View {
 
 struct AuthIdentificationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthIdentificationView()
+        AuthIdentificationView(registerViewModel: AuthRegistrationMenuViewModel())
     }
 }

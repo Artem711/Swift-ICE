@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthExperienceCustomisationView: View {
+    @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +16,6 @@ struct AuthExperienceCustomisationView: View {
 
 struct AuthExperienceCustomisationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthExperienceCustomisationView()
+        AuthExperienceCustomisationView(registerViewModel: AuthRegistrationMenuViewModel())
     }
 }

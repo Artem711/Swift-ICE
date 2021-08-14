@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthInvestorProfileView: View {
+    @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
         Text("AuthInvestorProfileView")
     }
@@ -15,6 +16,6 @@ struct AuthInvestorProfileView: View {
 
 struct AuthInvestorProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthInvestorProfileView()
+        AuthInvestorProfileView(registerViewModel: AuthRegistrationMenuViewModel())
     }
 }

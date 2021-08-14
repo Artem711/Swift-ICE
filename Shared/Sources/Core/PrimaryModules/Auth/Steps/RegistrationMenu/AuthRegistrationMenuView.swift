@@ -7,61 +7,34 @@
 
 import SwiftUI
 
-enum RegistrationStep: String, CaseIterable {
-    case personalData = "Personal Data"
-    case identification = "Identification"
-    case investorProfile = "Create your investor Profile"
-    case experienceCustomisation = "Customise your experience"
-    
-    var content: (title: String, time: Int, description: String) {
-        switch self {
-        case .personalData:
-            return (self.rawValue, 2, "To safely open your account, we are required to colled this information by law. We store it with army-level, 256-bit security.")
-        case .identification:
-            return (self.rawValue, 2, "Verify your identity in minutes by presenting a valid document such as a passport, ID card or a driving license.")
-        case .investorProfile:
-            return (self.rawValue, 5, "Answer some questions so we can build your Investor Profile, understanding your needs and the risk you are willing to take.")
-        case .experienceCustomisation:
-            return (self.rawValue, 2, "Choose from multiple options of themes for the app, the app icon, etc. Set up your notifications as well as Face ID preferences.")
-        }
-    }
-}
 
-extension RegistrationStep: Identifiable {
-    var id: RawValue { self.rawValue }
-}
+
 
 struct AuthRegistrationMenuView: View {
     @StateObject private var viewModel = AuthRegistrationMenuViewModel()
     
     var body: some View {
-        Group {
-            AuthWrapperView(AuthRegistrationMenuStep.home) {
-                ForEach(RegistrationStep.allCases) { item in
-                    AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.handler(item: item) }
-                }
-                .padding(.top)
+        AuthWrapperView(AuthRegistrationMenuStep.home) {
+            ForEach(RegistrationStep.allCases) { item in
+                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.viewModel.handler(item: item) }
             }
+            .padding(.top)
             
             NavigationLink(
-                destination: Text("Destination"),
-                isActive: .constant(self.viewModel.navigateToPersonalData),
-                label: {
-                    Text("Navigate")
-                })
-        }
-    }
-    
-    private func handler(item: RegistrationStep) {
-        switch item {
-        case .personalData:
-            self.viewModel.selectedStep = self.viewModel.selectedStep.next()
-        case .identification:
-            self.viewModel.selectedStep = self.viewModel.selectedStep.next()
-        case .investorProfile:
-            self.viewModel.selectedStep = self.viewModel.selectedStep.next()
-        case .experienceCustomisation:
-            print("Finished")
+                destination: AuthPersonalDataView(registerViewModel: self.viewModel),
+                isActive: .constant(self.viewModel.navigateToPersonalData)) {EmptyView()}.hidden()
+            
+            NavigationLink(
+                destination: AuthIdentificationView(registerViewModel: self.viewModel),
+                isActive: .constant(self.viewModel.navigateToIdentification)) {EmptyView()}.hidden()
+            
+            NavigationLink(
+                destination: AuthInvestorProfileView(registerViewModel: self.viewModel),
+                isActive: .constant(self.viewModel.navigateToInvestorProfile)) {EmptyView()}.hidden()
+            
+            NavigationLink(
+                destination: AuthExperienceCustomisationView(registerViewModel: self.viewModel),
+                isActive: .constant(self.viewModel.navigateToExperienceCustomisation)) {EmptyView()}.hidden()
         }
     }
     
