@@ -31,26 +31,35 @@ extension RegistrationStep: Identifiable {
     var id: RawValue { self.rawValue }
 }
 
-struct RegistrationMenuView: View {
-    @State var selectedStep: RegistrationStep = .personalData
+struct AuthRegistrationMenuView: View {
+    @StateObject private var viewModel = AuthRegistrationMenuViewModel()
     
     var body: some View {
-        AuthWrapperView(AuthRegistrationMenuStep.home) {
-            ForEach(RegistrationStep.allCases) { item in
-                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.handler(item: item) }
+        Group {
+            AuthWrapperView(AuthRegistrationMenuStep.home) {
+                ForEach(RegistrationStep.allCases) { item in
+                    AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.handler(item: item) }
+                }
+                .padding(.top)
             }
-            .padding(.top)
+            
+            NavigationLink(
+                destination: Text("Destination"),
+                isActive: .constant(self.viewModel.navigateToPersonalData),
+                label: {
+                    Text("Navigate")
+                })
         }
     }
     
     private func handler(item: RegistrationStep) {
         switch item {
         case .personalData:
-            self.selectedStep = self.selectedStep.next()
+            self.viewModel.selectedStep = self.viewModel.selectedStep.next()
         case .identification:
-            self.selectedStep = self.selectedStep.next()
+            self.viewModel.selectedStep = self.viewModel.selectedStep.next()
         case .investorProfile:
-            self.selectedStep = self.selectedStep.next()
+            self.viewModel.selectedStep = self.viewModel.selectedStep.next()
         case .experienceCustomisation:
             print("Finished")
         }
@@ -59,9 +68,9 @@ struct RegistrationMenuView: View {
     private func completionStatus(item: RegistrationStep) -> AuthRegistrationCompletionStatus {
         let num: Int = (RegistrationStep.allCases.firstIndex(of: item) ?? 0)
         let arrayBefore = RegistrationStep.allCases[0...num]
-        if self.selectedStep == item {
+        if self.viewModel.selectedStep == item {
             return .completing
-        } else if arrayBefore.contains(self.selectedStep) {
+        } else if arrayBefore.contains(self.viewModel.selectedStep) {
             return .toBeCompleted
         } else  {
             return .completed
@@ -71,7 +80,10 @@ struct RegistrationMenuView: View {
 
 struct AuthMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationMenuView()
-            .preferredColorScheme(.dark)
+        NavigationView {
+            AuthRegistrationMenuView()
+                .preferredColorScheme(.dark)
+                .navigationBarHidden(true)
+        }
     }
 }

@@ -15,8 +15,8 @@ struct AuthView: View {
             VStack {
                 AuthStartView(goToRegistration: self.$goToRegistration)
                 NavigationLink(destination:
-                                RegistrationMenuView()
-                                .navigationBarTitle("").navigationBarTitleDisplayMode(.inline),
+                                AuthRegistrationMenuView()
+                                .navigationBarHidden(true),
                     isActive: self.$goToRegistration) { EmptyView() }
                 .hidden()
             }

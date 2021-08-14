@@ -20,7 +20,7 @@ protocol AuthViewModels: ObservableObject {
     func moveToBackScreen() -> Void
 }
 
-final class AuthStartViewModel: ObservableObject {
+final class AuthStartViewModel: AuthViewModels {
     typealias LocalAuthNavigation = AuthStartStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
     
