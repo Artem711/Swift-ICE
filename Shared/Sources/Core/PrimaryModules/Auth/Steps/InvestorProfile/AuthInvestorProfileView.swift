@@ -11,6 +11,7 @@ struct AuthInvestorProfileView: View {
     @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
         Text("AuthInvestorProfileView")
+        Button("Done") { self.registerViewModel.doneHandler(item: .investorProfile) }
     }
 }
 

@@ -10,7 +10,10 @@ import SwiftUI
 struct AuthPersonalDataView: View {
     @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
-        Text("AuthPersonalDataView")
+        VStack {
+            Text("AuthPersonalDataView")
+            Button("Done") { self.registerViewModel.doneHandler(item: .personalData) }
+        }
     }
 }
 

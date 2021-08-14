@@ -29,31 +29,7 @@ final class AuthRegistrationMenuViewModel: ObservableObject {
     { self.navigate && self.selectedStep == .experienceCustomisation }
     
     var navigateToEnd: Bool
-    { self.navigate && self.selectedStep == .experienceCustomisation }
-    
-    func handler(item: RegistrationStep) {
-        switch item {
-        case .personalData:
-            if self.personalDataDone {
-                self.selectedStep = .personalData
-                self.navigate = true
-            }
-        case .identification:
-            if self.identificationDone {
-                self.selectedStep = .investorProfile
-                self.navigate = true
-            }
-        case .investorProfile:
-            if self.investorProfileDone {
-                self.selectedStep = .experienceCustomisation
-                self.navigate = true
-            }
-        case .experienceCustomisation:
-            if self.experienceCustomisationDone {
-                self.navigate = true
-            }
-        }
-    }
+    { self.navigate && self.experienceCustomisationDone && self.selectedStep == .experienceCustomisation }
     
     // MARK: - PersonalData
     @Published var dobText = ""
@@ -66,6 +42,52 @@ final class AuthRegistrationMenuViewModel: ObservableObject {
     @Published var postalCodeText = ""
     @Published var cityText = ""
     @Published var countryText = ""
+}
+
+extension AuthRegistrationMenuViewModel {
+    func continueHandler(item: RegistrationStep) {
+        switch item {
+        case .personalData:
+            self.selectedStep = .personalData
+            self.navigate = true
+        case .identification:
+            if self.personalDataDone {
+                self.selectedStep = .identification
+                self.navigate = true
+            }
+        case .investorProfile:
+            if self.identificationDone {
+                self.selectedStep = .investorProfile
+                self.navigate = true
+            }
+        case .experienceCustomisation:
+            if self.investorProfileDone {
+                self.selectedStep = .experienceCustomisation
+                self.navigate = true
+            }
+        }
+    }
+    
+    func doneHandler(item: RegistrationStep) {
+        switch item {
+        case .personalData:
+            self.personalDataDone = true
+            self.navigateBack()
+            self.selectedStep = .identification
+        case .identification:
+            self.identificationDone = true
+            self.navigateBack()
+            self.selectedStep = .investorProfile
+        case .investorProfile:
+            self.investorProfileDone = true
+            self.navigateBack()
+            self.selectedStep = .experienceCustomisation
+        case .experienceCustomisation:
+            self.experienceCustomisationDone = true
+        }
+    }
+    
+    private func navigateBack() {self.navigate = false}
 }
 
 enum RegistrationStep: String, CaseIterable {

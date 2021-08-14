@@ -11,6 +11,7 @@ struct AuthIdentificationView: View {
     @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
         Text("AuthIdentificationView")
+        Button("Done") { self.registerViewModel.doneHandler(item: .identification) }
     }
 }
 

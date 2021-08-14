@@ -10,7 +10,8 @@ import SwiftUI
 struct AuthExperienceCustomisationView: View {
     @ObservedObject var registerViewModel: AuthRegistrationMenuViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Experience")
+        Button("Done") { self.registerViewModel.doneHandler(item: .experienceCustomisation) }
     }
 }
 
