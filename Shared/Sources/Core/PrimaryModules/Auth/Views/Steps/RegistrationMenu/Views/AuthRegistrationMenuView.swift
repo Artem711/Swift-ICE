@@ -27,6 +27,15 @@ struct AuthRegistrationMenuView: View {
             .padding(.top)
 
            
+            NavigationLink(
+                destination: AuthBirthDateView()
+                
+                { date in
+                    self.viewModel.setAdultStatus(date as? Date ?? Date())
+                    self.viewModel.showBirthDateView = false
+                    self.viewModel.navigate = true
+                }.navigationBarBackButtonHidden(true),
+                isActive: self.$viewModel.showBirthDateView) {EmptyView()}.hidden()
 
             NavigationLink(
                 destination: AuthAdultPersonalDataView(endHandler: {_ in 
@@ -50,8 +59,6 @@ struct AuthRegistrationMenuView: View {
                 isActive: .constant(self.viewModel.navigateToExperienceCustomisation)) {EmptyView()}.hidden()
             
         }
-        .sheet(isPresented: self.$viewModel.showBirthDateView)
-            { AuthBirthDateView() { date in self.viewModel.setAdultStatus(date as? Date ?? Date()) } }
     }
     
     

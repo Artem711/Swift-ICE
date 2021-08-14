@@ -17,7 +17,7 @@ struct AuthBirthDateView: AuthViewProtocol {
     typealias LocalAuthNavigation = AuthBirthDateStep
     @StateObject var viewModel = AuthBirthDateViewModel()
     
-    var body: some View { self.wrapper() }
+    var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep) }
     
     @ViewBuilder func content(item: AuthBirthDateStep?) -> some View {
         VStack {
@@ -28,7 +28,7 @@ struct AuthBirthDateView: AuthViewProtocol {
 }
 
 final class AuthBirthDateViewModel: AuthViewModelProtocol {
-    typealias LocalAuthNavigation = AuthAdultPersonalDataStep
+    typealias LocalAuthNavigation = AuthBirthDateStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
     @Published var loading = false
 
