@@ -1,6 +1,6 @@
 //
-//  AuthIdentificationView.swift
-//  ICE
+//  AuthIdentification.swift
+//  ICE (iOS)
 //
 //  Created by Артём Мошнин on 14/8/21.
 //
@@ -15,8 +15,4 @@ struct AuthIdentificationView: View {
     }
 }
 
-struct AuthIdentificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthIdentificationView(registerViewModel: AuthRegistrationMenuViewModel())
-    }
-}
+final class AuthIdentificationViewModel: ObservableObject {}

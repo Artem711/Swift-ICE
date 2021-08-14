@@ -1,6 +1,6 @@
 //
-//  AuthExperienceCustomisationView.swift
-//  ICE
+//  AuthExperienceCustomisation.swift
+//  ICE (iOS)
 //
 //  Created by Артём Мошнин on 14/8/21.
 //
@@ -15,8 +15,4 @@ struct AuthExperienceCustomisationView: View {
     }
 }
 
-struct AuthExperienceCustomisationView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthExperienceCustomisationView(registerViewModel: AuthRegistrationMenuViewModel())
-    }
-}
+final class AuthExperienceCustomisationViewModel: ObservableObject {}

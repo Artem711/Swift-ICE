@@ -1,19 +1,18 @@
 //
-//  InitiationAuthView.swift
+//  Start.swift
 //  ICE (iOS)
 //
-//  Created by Артём Мошнин on 13/8/21.
+//  Created by Артём Мошнин on 14/8/21.
 //
 
 import SwiftUI
 
+typealias S = AuthStartStep
 struct AuthStartView: AuthViewProtocol {
+    typealias LocalAuthNavigation = S
     typealias ViewModel = AuthStartViewModel
-    typealias LocalAuthNavigation = AuthStartStep
-    
     @StateObject var viewModel = ViewModel()
     var endHandler: ActionHandler
-    
     var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep) }
     
     @ViewBuilder func content(item: LocalAuthNavigation) -> some View {
@@ -46,8 +45,14 @@ struct AuthStartView: AuthViewProtocol {
     }
 }
 
-//struct AuthStartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AuthStartView()
-//    }
-//}
+final class AuthStartViewModel: AuthViewModelProtocol {
+    typealias LocalAuthNavigation = S
+    @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
+    @Published var loading = false
+    
+    @Published var phoneNumberCountryText: CountryPhoneCode = .spain
+    @Published var phoneNumberText: String = ""
+    @Published var passcodeText = ""
+    @Published var passcodeVerificationText = ""
+}
+

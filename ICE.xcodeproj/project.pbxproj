@@ -10,7 +10,6 @@
 		AC14001126C6FA5A00147ABB /* AuthRegistrationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14001026C6FA5A00147ABB /* AuthRegistrationMenuView.swift */; };
 		AC14001C26C6FBE900147ABB /* AuthWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DF64D26C54B070082EEE9 /* AuthWrapperView.swift */; };
 		AC14002126C6FBEE00147ABB /* AuthRegistrationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14001026C6FA5A00147ABB /* AuthRegistrationMenuView.swift */; };
-		AC14002726C6FC1600147ABB /* AuthStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14002626C6FC1600147ABB /* AuthStartView.swift */; };
 		AC14006F26C704C100147ABB /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14006E26C704C100147ABB /* NumberPadView.swift */; };
 		AC14007E26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */; };
 		AC14007F26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */; };
@@ -40,7 +39,6 @@
 		AC423AB926BF36F000BD54F6 /* AuthPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */; };
 		AC423AC626BF3B7200BD54F6 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* AuthView.swift */; };
 		AC423AC726BF3B7200BD54F6 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423AC526BF3B7200BD54F6 /* AuthView.swift */; };
-		AC423ACD26BF3BB600BD54F6 /* AuthStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC423ACC26BF3BB600BD54F6 /* AuthStartViewModel.swift */; };
 		AC5EA5CB26C4E51700FEA365 /* AuthNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5EA5CA26C4E51700FEA365 /* AuthNavigationManager.swift */; };
 		AC5EA5D526C4EC5900FEA365 /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5EA5D426C4EC5900FEA365 /* CaseIterable.swift */; };
 		AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */; };
@@ -65,24 +63,13 @@
 		ACDC23DB26B9CE2200D26B66 /* NavigationWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDC23DA26B9CE2200D26B66 /* NavigationWrapperView.swift */; };
 		ACFE09E726C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE09E626C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift */; };
 		ACFE09E826C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE09E626C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift */; };
-		ACFE09F626C7893F00708CC7 /* AuthPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE09F526C7893F00708CC7 /* AuthPersonalDataView.swift */; };
-		ACFE09F726C7893F00708CC7 /* AuthPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE09F526C7893F00708CC7 /* AuthPersonalDataView.swift */; };
-		ACFE0A0D26C7898300708CC7 /* AuthPersonalDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A0C26C7898300708CC7 /* AuthPersonalDataViewModel.swift */; };
-		ACFE0A0E26C7898300708CC7 /* AuthPersonalDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A0C26C7898300708CC7 /* AuthPersonalDataViewModel.swift */; };
-		ACFE0A1426C789A200708CC7 /* AuthIdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A1326C789A200708CC7 /* AuthIdentificationView.swift */; };
-		ACFE0A1526C789A200708CC7 /* AuthIdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A1326C789A200708CC7 /* AuthIdentificationView.swift */; };
-		ACFE0A1B26C789AC00708CC7 /* AuthIdentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A1A26C789AC00708CC7 /* AuthIdentificationViewModel.swift */; };
-		ACFE0A1C26C789AC00708CC7 /* AuthIdentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A1A26C789AC00708CC7 /* AuthIdentificationViewModel.swift */; };
-		ACFE0A2226C789C700708CC7 /* AuthInvestorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2126C789C700708CC7 /* AuthInvestorProfileView.swift */; };
-		ACFE0A2326C789C700708CC7 /* AuthInvestorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2126C789C700708CC7 /* AuthInvestorProfileView.swift */; };
-		ACFE0A2926C789D200708CC7 /* AuthInvestorProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2826C789D200708CC7 /* AuthInvestorProfileViewModel.swift */; };
-		ACFE0A2A26C789D200708CC7 /* AuthInvestorProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2826C789D200708CC7 /* AuthInvestorProfileViewModel.swift */; };
-		ACFE0A3026C789EE00708CC7 /* AuthExperienceCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2F26C789EE00708CC7 /* AuthExperienceCustomisationView.swift */; };
-		ACFE0A3126C789EE00708CC7 /* AuthExperienceCustomisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A2F26C789EE00708CC7 /* AuthExperienceCustomisationView.swift */; };
-		ACFE0A3726C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */; };
-		ACFE0A3826C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */; };
 		ACFE0A4026C7C29000708CC7 /* AuthViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A3F26C7C29000708CC7 /* AuthViewModelProtocol.swift */; };
 		ACFE0A5326C7C91D00708CC7 /* AuthViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A5226C7C91D00708CC7 /* AuthViewProtocol.swift */; };
+		ACFE0A5926C7D2A700708CC7 /* AuthStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A5826C7D2A700708CC7 /* AuthStart.swift */; };
+		ACFE0A6326C7D2D500708CC7 /* AuthPersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A6226C7D2D500708CC7 /* AuthPersonalData.swift */; };
+		ACFE0A7526C7D3D400708CC7 /* AuthIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A7426C7D3D400708CC7 /* AuthIdentification.swift */; };
+		ACFE0A7F26C7D3FB00708CC7 /* AuthInvestorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A7E26C7D3FB00708CC7 /* AuthInvestorProfile.swift */; };
+		ACFE0A8926C7D41D00708CC7 /* AuthExperienceCustomisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE0A8826C7D41D00708CC7 /* AuthExperienceCustomisation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +91,6 @@
 
 /* Begin PBXFileReference section */
 		AC14001026C6FA5A00147ABB /* AuthRegistrationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationMenuView.swift; sourceTree = "<group>"; };
-		AC14002626C6FC1600147ABB /* AuthStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStartView.swift; sourceTree = "<group>"; };
 		AC14006E26C704C100147ABB /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
 		AC14007D26C711C100147ABB /* AuthRegistrationBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationBlockView.swift; sourceTree = "<group>"; };
 		AC14008826C718EF00147ABB /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -136,7 +122,6 @@
 		AC423AAC26BF35F400BD54F6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AC423AB726BF36F000BD54F6 /* AuthPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPublisher.swift; sourceTree = "<group>"; };
 		AC423AC526BF3B7200BD54F6 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		AC423ACC26BF3BB600BD54F6 /* AuthStartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStartViewModel.swift; sourceTree = "<group>"; };
 		AC5EA5CA26C4E51700FEA365 /* AuthNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationManager.swift; sourceTree = "<group>"; };
 		AC5EA5D426C4EC5900FEA365 /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseIterable.swift; sourceTree = "<group>"; };
 		AC6F4B7226BD9C5300EF1442 /* StarterRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterRectangleView.swift; sourceTree = "<group>"; };
@@ -150,16 +135,13 @@
 		ACCD2E3326BA608E00C550A8 /* PrimaryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonView.swift; sourceTree = "<group>"; };
 		ACDC23DA26B9CE2200D26B66 /* NavigationWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationWrapperView.swift; sourceTree = "<group>"; };
 		ACFE09E626C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationMenuViewModel.swift; sourceTree = "<group>"; };
-		ACFE09F526C7893F00708CC7 /* AuthPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPersonalDataView.swift; sourceTree = "<group>"; };
-		ACFE0A0C26C7898300708CC7 /* AuthPersonalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPersonalDataViewModel.swift; sourceTree = "<group>"; };
-		ACFE0A1326C789A200708CC7 /* AuthIdentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthIdentificationView.swift; sourceTree = "<group>"; };
-		ACFE0A1A26C789AC00708CC7 /* AuthIdentificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthIdentificationViewModel.swift; sourceTree = "<group>"; };
-		ACFE0A2126C789C700708CC7 /* AuthInvestorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInvestorProfileView.swift; sourceTree = "<group>"; };
-		ACFE0A2826C789D200708CC7 /* AuthInvestorProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInvestorProfileViewModel.swift; sourceTree = "<group>"; };
-		ACFE0A2F26C789EE00708CC7 /* AuthExperienceCustomisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExperienceCustomisationView.swift; sourceTree = "<group>"; };
-		ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExperienceCustomisationViewModel.swift; sourceTree = "<group>"; };
 		ACFE0A3F26C7C29000708CC7 /* AuthViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelProtocol.swift; sourceTree = "<group>"; };
 		ACFE0A5226C7C91D00708CC7 /* AuthViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewProtocol.swift; sourceTree = "<group>"; };
+		ACFE0A5826C7D2A700708CC7 /* AuthStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStart.swift; sourceTree = "<group>"; };
+		ACFE0A6226C7D2D500708CC7 /* AuthPersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPersonalData.swift; sourceTree = "<group>"; };
+		ACFE0A7426C7D3D400708CC7 /* AuthIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthIdentification.swift; sourceTree = "<group>"; };
+		ACFE0A7E26C7D3FB00708CC7 /* AuthInvestorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInvestorProfile.swift; sourceTree = "<group>"; };
+		ACFE0A8826C7D41D00708CC7 /* AuthExperienceCustomisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExperienceCustomisation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,15 +180,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC14001B26C6FBD400147ABB /* Start */ = {
-			isa = PBXGroup;
-			children = (
-				AC14002626C6FC1600147ABB /* AuthStartView.swift */,
-				AC423ACC26BF3BB600BD54F6 /* AuthStartViewModel.swift */,
-			);
-			path = Start;
-			sourceTree = "<group>";
-		};
 		AC14004026C6FCFA00147ABB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,12 +191,12 @@
 		AC14004126C6FD0100147ABB /* Steps */ = {
 			isa = PBXGroup;
 			children = (
-				AC14001B26C6FBD400147ABB /* Start */,
+				ACFE0A5826C7D2A700708CC7 /* AuthStart.swift */,
+				ACFE0A6226C7D2D500708CC7 /* AuthPersonalData.swift */,
+				ACFE0A7426C7D3D400708CC7 /* AuthIdentification.swift */,
+				ACFE0A7E26C7D3FB00708CC7 /* AuthInvestorProfile.swift */,
+				ACFE0A8826C7D41D00708CC7 /* AuthExperienceCustomisation.swift */,
 				AC14007826C7059800147ABB /* RegistrationMenu */,
-				ACFE09F126C788E700708CC7 /* PersonalData */,
-				ACFE09F226C788F200708CC7 /* Identification */,
-				ACFE09F326C788FE00708CC7 /* InvestorProfile */,
-				ACFE09F426C7890800708CC7 /* ExperienceCustomisation */,
 			);
 			path = Steps;
 			sourceTree = "<group>";
@@ -591,42 +564,6 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
-		ACFE09F126C788E700708CC7 /* PersonalData */ = {
-			isa = PBXGroup;
-			children = (
-				ACFE09F526C7893F00708CC7 /* AuthPersonalDataView.swift */,
-				ACFE0A0C26C7898300708CC7 /* AuthPersonalDataViewModel.swift */,
-			);
-			path = PersonalData;
-			sourceTree = "<group>";
-		};
-		ACFE09F226C788F200708CC7 /* Identification */ = {
-			isa = PBXGroup;
-			children = (
-				ACFE0A1326C789A200708CC7 /* AuthIdentificationView.swift */,
-				ACFE0A1A26C789AC00708CC7 /* AuthIdentificationViewModel.swift */,
-			);
-			path = Identification;
-			sourceTree = "<group>";
-		};
-		ACFE09F326C788FE00708CC7 /* InvestorProfile */ = {
-			isa = PBXGroup;
-			children = (
-				ACFE0A2126C789C700708CC7 /* AuthInvestorProfileView.swift */,
-				ACFE0A2826C789D200708CC7 /* AuthInvestorProfileViewModel.swift */,
-			);
-			path = InvestorProfile;
-			sourceTree = "<group>";
-		};
-		ACFE09F426C7890800708CC7 /* ExperienceCustomisation */ = {
-			isa = PBXGroup;
-			children = (
-				ACFE0A2F26C789EE00708CC7 /* AuthExperienceCustomisationView.swift */,
-				ACFE0A3626C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift */,
-			);
-			path = ExperienceCustomisation;
-			sourceTree = "<group>";
-		};
 		ACFE0A3D26C7C26100708CC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,21 +788,20 @@
 				AC18C61826BD6416005F13B9 /* FooterView.swift in Sources */,
 				AC2E564326B9AF0D00EAF7B0 /* FooterNavigatorView.swift in Sources */,
 				ACB5A12E26C6C8A20052316C /* PasscodeCellsFieldView.swift in Sources */,
+				ACFE0A5926C7D2A700708CC7 /* AuthStart.swift in Sources */,
 				AC5EA5D526C4EC5900FEA365 /* CaseIterable.swift in Sources */,
 				ACCD2DF526BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
-				ACFE0A3726C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift in Sources */,
 				AC2E563726B9AD4800EAF7B0 /* Color.swift in Sources */,
-				ACFE0A3026C789EE00708CC7 /* AuthExperienceCustomisationView.swift in Sources */,
+				ACFE0A8926C7D41D00708CC7 /* AuthExperienceCustomisation.swift in Sources */,
 				AC1DF64E26C54B070082EEE9 /* AuthWrapperView.swift in Sources */,
 				ACFE0A4026C7C29000708CC7 /* AuthViewModelProtocol.swift in Sources */,
 				AC1DF61B26C53B5C0082EEE9 /* TextFieldView.swift in Sources */,
 				ACB5A12426C6C57E0052316C /* PhoneNumberSelectorView.swift in Sources */,
 				AC5EA5CB26C4E51700FEA365 /* AuthNavigationManager.swift in Sources */,
-				ACFE09F626C7893F00708CC7 /* AuthPersonalDataView.swift in Sources */,
 				AC14007E26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */,
 				ACB5A11E26C6C51C0052316C /* CellsFieldView.swift in Sources */,
-				AC423ACD26BF3BB600BD54F6 /* AuthStartViewModel.swift in Sources */,
 				AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
+				ACFE0A7526C7D3D400708CC7 /* AuthIdentification.swift in Sources */,
 				ACFE09E726C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift in Sources */,
 				AC14008926C718EF00147ABB /* Int.swift in Sources */,
 				AC1DF60D26C53AD10082EEE9 /* DateFieldView.swift in Sources */,
@@ -877,16 +813,12 @@
 				AC2E569C26B9B8CA00EAF7B0 /* NavigationManager.swift in Sources */,
 				AC14FFE226C6F1EE00147ABB /* CountryPhonesListView.swift in Sources */,
 				ACCD2E1626BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
-				ACFE0A2926C789D200708CC7 /* AuthInvestorProfileViewModel.swift in Sources */,
-				ACFE0A1426C789A200708CC7 /* AuthIdentificationView.swift in Sources */,
-				ACFE0A0D26C7898300708CC7 /* AuthPersonalDataViewModel.swift in Sources */,
+				ACFE0A6326C7D2D500708CC7 /* AuthPersonalData.swift in Sources */,
 				ACFE0A5326C7C91D00708CC7 /* AuthViewProtocol.swift in Sources */,
-				AC14002726C6FC1600147ABB /* AuthStartView.swift in Sources */,
-				ACFE0A2226C789C700708CC7 /* AuthInvestorProfileView.swift in Sources */,
 				AC423AC626BF3B7200BD54F6 /* AuthView.swift in Sources */,
 				AC1DF62126C53BDC0082EEE9 /* Text.swift in Sources */,
+				ACFE0A7F26C7D3FB00708CC7 /* AuthInvestorProfile.swift in Sources */,
 				AC6F4B7326BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
-				ACFE0A1B26C789AC00708CC7 /* AuthIdentificationViewModel.swift in Sources */,
 				AC14001126C6FA5A00147ABB /* AuthRegistrationMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,22 +828,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACFE09E826C7846C00708CC7 /* AuthRegistrationMenuViewModel.swift in Sources */,
-				ACFE0A2326C789C700708CC7 /* AuthInvestorProfileView.swift in Sources */,
 				AC14001C26C6FBE900147ABB /* AuthWrapperView.swift in Sources */,
-				ACFE0A1526C789A200708CC7 /* AuthIdentificationView.swift in Sources */,
 				AC14008A26C718EF00147ABB /* Int.swift in Sources */,
-				ACFE0A3126C789EE00708CC7 /* AuthExperienceCustomisationView.swift in Sources */,
-				ACFE0A1C26C789AC00708CC7 /* AuthIdentificationViewModel.swift in Sources */,
 				AC6F4B8E26BDA3D400EF1442 /* TransparentButton.swift in Sources */,
 				AC14007F26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */,
-				ACFE0A3826C789F600708CC7 /* AuthExperienceCustomisationViewModel.swift in Sources */,
 				AC6F4B7426BD9C5300EF1442 /* StarterRectangleView.swift in Sources */,
-				ACFE0A0E26C7898300708CC7 /* AuthPersonalDataViewModel.swift in Sources */,
-				ACFE0A2A26C789D200708CC7 /* AuthInvestorProfileViewModel.swift in Sources */,
 				AC14002126C6FBEE00147ABB /* AuthRegistrationMenuView.swift in Sources */,
 				ACCD2E1726BA5BBF00C550A8 /* PreviewLayoutComponentModifier.swift in Sources */,
 				AC423AC726BF3B7200BD54F6 /* AuthView.swift in Sources */,
-				ACFE09F726C7893F00708CC7 /* AuthPersonalDataView.swift in Sources */,
 				ACCD2DF626BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				AC2E561726B9AC8400EAF7B0 /* Main.swift in Sources */,
 				AC4239CB26BDAFBB00BD54F6 /* RoundedCorner.swift in Sources */,

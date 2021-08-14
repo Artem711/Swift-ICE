@@ -1,6 +1,6 @@
 //
-//  AuthInvestorProfileView.swift
-//  ICE
+//  AuthInvestorProfile.swift
+//  ICE (iOS)
 //
 //  Created by Артём Мошнин on 14/8/21.
 //
@@ -15,8 +15,4 @@ struct AuthInvestorProfileView: View {
     }
 }
 
-struct AuthInvestorProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthInvestorProfileView(registerViewModel: AuthRegistrationMenuViewModel())
-    }
-}
+final class AuthInvestorProfileViewModel: ObservableObject {}
