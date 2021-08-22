@@ -11,20 +11,16 @@ struct AuthRegistrationMenuView: View {
     @ObservedObject var viewModel: AuthViewModel
     
     var body: some View {
-        AuthWrapperView(item: AuthRegistrationMenuStep.home, content: {
-            ForEach(RegistrationStep.allCases) { item in
-                AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.viewModel.continueHandler(item: item) }
-            }
-
-//            NavigationLink(
-//                destination: AuthBirthDateView() { date in
-//                    self.viewModel.setAdultStatus(date as? Date ?? Date())
-//                    self.viewModel.showBirthDateView = false
-//                    self.viewModel.navigate = true
-//                }.navigationBarBackButtonHidden(true),
-//                isActive: self.$viewModel.showBirthDateView) {EmptyView()}.hidden()
-
-        })
+        Group {
+            AuthWrapperView(item: AuthRegistrationMenuEnum.self, content: { _ in
+                ForEach(RegistrationStep.allCases) { item in
+                    AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.viewModel.continueHandler(item: item) }
+            }}, onGoBack: {_ in self.viewModel.authMove = nil})
+            
+//            Group {
+//               
+//            }.hidden()
+        }
     }
     
     
@@ -50,13 +46,13 @@ struct AuthMenuView_Previews: PreviewProvider {
     }
 }
 
-enum AuthRegistrationMenuStep: AuthNavigationManager {
-    case home
+enum AuthRegistrationMenuEnum: AuthNavigationManager { case x
     var text: (title: String, description: String) {
         return ("Navigation", "Navigationdesc")
     }
 }
 
-extension AuthRegistrationMenuStep: Identifiable {
+extension AuthRegistrationMenuEnum: Identifiable {
     var id: Self { self }
 }
+

@@ -19,25 +19,29 @@ final class AuthViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
-        
-    }
+    init() { self.subscribe() }
     
-    func subscribe() {
+    private func subscribe() {
         if let move = self.authMove {
             switch move {
             case .login:
                 print("login")
             case .register:
-                switch self.selectedStep {
-                case .personalData:
-                    print("personalData")
-                case .identification:
-                    print("identification")
-                case .investorProfile:
-                    print("investorProfile")
-                case .experienceCustomisation:
-                    print("experienceCustomisation")
+                if !self.navigate {
+                    self.phoneNumVerificationQuestValidPublisher
+                    self.passcodeCreationQuestValidPublisher
+                    self.passcodeVerificationQuestValidPublisher
+                } else {
+                    switch self.selectedStep {
+                    case .personalData:
+                        print("personalData")
+                    case .identification:
+                        print("identification")
+                    case .investorProfile:
+                        print("investorProfile")
+                    case .experienceCustomisation:
+                        print("experienceCustomisation")
+                    }
                 }
             }
         } else {
@@ -49,15 +53,9 @@ final class AuthViewModel: ObservableObject {
             self.phoneNumQuestValidPublisher
                 .dropFirst()
                 .receive(on: RunLoop.main)
-                .map { _ in  "" }
+                .map { value in value == true ? "" : "Invalid phone number" }
                 .assign(to: \.phoneNumQuestErrorText, on: self)
                 .store(in: &cancellables)
-        }
-    }
-    
-    func cancel() {
-        for i in cancellables {
-            i.cancel()
         }
     }
     
@@ -70,8 +68,7 @@ final class AuthViewModel: ObservableObject {
     @Published var phoneNumQuestErrorText = ""
     @Published var phoneNumQuestValid = false
     func phoneNumQuestNext() {
-        self.authMove = .login
-        self.cancel()
+        self.authMove = .register
     }
     
     private var phoneNumQuestValidPublisher: AnyPublisher<Bool, Never> {
@@ -87,6 +84,50 @@ final class AuthViewModel: ObservableObject {
     // MARK: - Quest - Passcode
     
     // MARK: - ** REGISTRATION **
+    // MARK: Pre-Registration Menu
+    // PhoneNumVerification
+    @Published var phoneNumVerificationQuestField = ""
+    @Published var phoneNumVerificationQuestErrorText = ""
+    @Published var phoneNumVerificationQuestValid = false
+    func phoneNumVerificationQuestNext() {}
+    private var phoneNumVerificationQuestValidPublisher: AnyPublisher<Bool, Never> {
+        self
+            .$phoneNumVerificationQuestField
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map { $0.count >= 6 }
+            .eraseToAnyPublisher()
+    }
+    
+    // PasscodeCreation
+    @Published var passcodeCreationQuestField = ""
+    @Published var passcodeCreationQuestErrorText = ""
+    @Published var passcodeCreationQuestValid = false
+    func passcodeCreationQuestNext() {}
+    private var passcodeCreationQuestValidPublisher: AnyPublisher<Bool, Never> {
+        self
+            .$passcodeCreationQuestField
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map { $0.count >= 6 }
+            .eraseToAnyPublisher()
+    }
+    
+    // PasscodeVerification
+    @Published var passcodeVerificationQuestField = ""
+    @Published var passcodeVerificationQuestErrorText = ""
+    @Published var passcodeVerificationQuestValid = false
+    func passcodeVerificationQuestNext() {}
+    private var passcodeVerificationQuestValidPublisher: AnyPublisher<Bool, Never> {
+        self
+            .$passcodeVerificationQuestField
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map { $0.count >= 6 }
+            .eraseToAnyPublisher()
+    }
+    
+    // MARK: Post-Registration Menu
     // MARK: - Quest - dob
     @Published var dobField = Date()
     var dobIsAdult: Bool {
