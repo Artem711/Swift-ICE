@@ -8,21 +8,15 @@
 import SwiftUI
 
 struct AuthBirthDateView: AuthViewProtocol {
-    
-    
-    var endHandler: (Any?) -> ()
-    
-    
     typealias ViewModel = AuthBirthDateViewModel
     typealias LocalAuthNavigation = AuthBirthDateStep
     @StateObject var viewModel = AuthBirthDateViewModel()
+    var endHandler: Self.ActionHandler
     
     var body: some View { self.wrapper(currentStep: self.$viewModel.currentStep) }
     
     @ViewBuilder func content(item: AuthBirthDateStep?) -> some View {
-        VStack {
             DateFieldView(selectedDate: self.$viewModel.selectedDate, mode: .date)
-        }
     }
   
 }
@@ -31,7 +25,6 @@ final class AuthBirthDateViewModel: AuthViewModelProtocol {
     typealias LocalAuthNavigation = AuthBirthDateStep
     @Published var currentStep: LocalAuthNavigation = LocalAuthNavigation.allCases.first!
     @Published var loading = false
-
     @Published var selectedDate = Date()
 }
 

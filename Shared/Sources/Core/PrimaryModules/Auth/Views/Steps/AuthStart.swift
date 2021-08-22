@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AuthStartView: AuthViewProtocol {
-    
-    
     typealias LocalAuthNavigation = AuthStartStep
     typealias ViewModel = AuthStartViewModel
     

@@ -95,6 +95,7 @@ extension AuthRegistrationMenuViewModel {
     
     private func navigateBack() {self.navigate = false}
     func setAdultStatus(_ date: Date) {
+        print(date)
         if let calculatedYear = Calendar.current.dateComponents([.year], from: date, to: Date()).year, calculatedYear < 18 {
             self.isAdult = false
         } else {

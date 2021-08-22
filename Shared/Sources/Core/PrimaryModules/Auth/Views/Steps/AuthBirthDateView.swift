@@ -1,14 +1,22 @@
 //
-//  AuthNavigationManager.swift
+//  AuthBirthDateView.swift
 //  ICE (iOS)
 //
-//  Created by Артём Мошнин on 12/8/21.
+//  Created by Артём Мошнин on 22/8/21.
 //
 
 import SwiftUI
 
-protocol AuthNavigationManager: CaseIterable, Identifiable, Hashable, Equatable where AllCases: BidirectionalCollection & RandomAccessCollection {
-    var text: (title: String, description: String) { get }
+struct AuthBirthDateView: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+struct AuthBirthDateView_Previews: PreviewProvider {
+    static var previews: some View {
+        AuthBirthDateView()
+    }
 }
 
 enum AuthStartStep: AuthNavigationManager {
@@ -43,3 +51,4 @@ enum AuthRegistrationMenuStep: AuthNavigationManager {
 extension AuthRegistrationMenuStep: Identifiable {
     var id: Self { self }
 }
+
