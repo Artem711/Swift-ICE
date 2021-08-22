@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct AuthRegistrationMenuView: View {
-    @StateObject private var viewModel = AuthRegistrationMenuViewModel()
-    
+    @ObservedObject var viewModel: AuthViewModel
     
     var body: some View {
-        AuthWrapperView(AuthRegistrationMenuStep.home) {
+        AuthWrapperView(item: AuthRegistrationMenuStep.home, content: {
             ForEach(RegistrationStep.allCases) { item in
                 AuthRegistrationBlockView(title: item.content.title, description: item.content.description, time: item.content.time, comlpetionStatus: self.completionStatus(item: item)) { self.viewModel.continueHandler(item: item) }
             }
-            .padding(.top)
 
-           
 //            NavigationLink(
 //                destination: AuthBirthDateView() { date in
 //                    self.viewModel.setAdultStatus(date as? Date ?? Date())
@@ -27,7 +24,7 @@ struct AuthRegistrationMenuView: View {
 //                }.navigationBarBackButtonHidden(true),
 //                isActive: self.$viewModel.showBirthDateView) {EmptyView()}.hidden()
 
-        }
+        })
     }
     
     
@@ -47,8 +44,7 @@ struct AuthRegistrationMenuView: View {
 struct AuthMenuView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AuthRegistrationMenuView()
-                .preferredColorScheme(.dark)
+            AuthRegistrationMenuView(viewModel: AuthViewModel())
                 .navigationBarHidden(true)
         }
     }
@@ -56,15 +52,11 @@ struct AuthMenuView_Previews: PreviewProvider {
 
 enum AuthRegistrationMenuStep: AuthNavigationManager {
     case home
-    
     var text: (title: String, description: String) {
-        switch self {
-        case .home:
-            return ("Home", "Home descr")
-        }
+        return ("Navigation", "Navigationdesc")
     }
 }
 
-extension AuthRegistrationMenuStep {
-    var id: Self {self}
+extension AuthRegistrationMenuStep: Identifiable {
+    var id: Self { self }
 }

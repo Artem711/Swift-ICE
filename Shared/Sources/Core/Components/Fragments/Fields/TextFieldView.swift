@@ -10,6 +10,7 @@ import SwiftUI
 struct TextFieldView: View {
     let placeholder: String
     @Binding var text: String
+    @Binding var errorText: String
     let keyboardType: UIKeyboardType = .default
     
     var body: some View {
@@ -23,7 +24,9 @@ struct TextFieldView: View {
                     .stroke(Color.gray.opacity(0.25))
                 )
             
-            Text("Error").errorTextStyle()
+            if self.errorText.count > 0 {
+                Text(self.errorText).errorTextStyle()
+            }
         }
     }
 }
