@@ -61,6 +61,8 @@
 		ACDC23DB26B9CE2200D26B66 /* NavigationWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDC23DA26B9CE2200D26B66 /* NavigationWrapperView.swift */; };
 		ACE3A08826D21D0300ECCD88 /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE3A08726D21D0300ECCD88 /* PasscodeView.swift */; };
 		ACE3A09B26D21D4900ECCD88 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE3A09A26D21D4900ECCD88 /* NumberPad.swift */; };
+		ACE8622126D3A3BC002B101B /* InquiryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8622026D3A3BC002B101B /* InquiryView.swift */; };
+		ACE8622726D3A9C0002B101B /* ScrollerInquiryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8622626D3A9C0002B101B /* ScrollerInquiryView.swift */; };
 		ACFE09E726C7846C00708CC7 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE09E626C7846C00708CC7 /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +130,8 @@
 		ACDC23DA26B9CE2200D26B66 /* NavigationWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationWrapperView.swift; sourceTree = "<group>"; };
 		ACE3A08726D21D0300ECCD88 /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
 		ACE3A09A26D21D4900ECCD88 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		ACE8622026D3A3BC002B101B /* InquiryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryView.swift; sourceTree = "<group>"; };
+		ACE8622626D3A9C0002B101B /* ScrollerInquiryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollerInquiryView.swift; sourceTree = "<group>"; };
 		ACFE09E626C7846C00708CC7 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				AC14FFE126C6F1EE00147ABB /* CountryPhonesListView.swift */,
+				ACE8622026D3A3BC002B101B /* InquiryView.swift */,
+				ACE8622626D3A9C0002B101B /* ScrollerInquiryView.swift */,
 			);
 			path = TertiaryModules;
 			sourceTree = "<group>";
@@ -757,9 +763,11 @@
 				AC5EA5D526C4EC5900FEA365 /* CaseIterable.swift in Sources */,
 				ACCD2DF526BA4ED600C550A8 /* HeaderViewModifier.swift in Sources */,
 				ACE3A08826D21D0300ECCD88 /* PasscodeView.swift in Sources */,
+				ACE8622726D3A9C0002B101B /* ScrollerInquiryView.swift in Sources */,
 				AC2E563726B9AD4800EAF7B0 /* Color.swift in Sources */,
 				AC1DF61B26C53B5C0082EEE9 /* TextFieldView.swift in Sources */,
 				ACB5A12426C6C57E0052316C /* PhoneNumberSelectorView.swift in Sources */,
+				ACE8622126D3A3BC002B101B /* InquiryView.swift in Sources */,
 				AC14007E26C711C100147ABB /* AuthRegistrationBlockView.swift in Sources */,
 				ACB5A11E26C6C51C0052316C /* CellsFieldView.swift in Sources */,
 				AC6F4B8D26BDA3D400EF1442 /* TransparentButton.swift in Sources */,

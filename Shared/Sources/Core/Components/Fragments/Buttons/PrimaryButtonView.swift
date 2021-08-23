@@ -30,7 +30,7 @@ struct PrimaryButtonView: View {
     var body: some View {
         Button(action: self.handler) {
             Text(self.title)
-                .frame(maxWidth: .infinity, maxHeight: 50)
+                .frame(maxWidth: .infinity, maxHeight: 40)
         }
         .background(self.backgroundColor)
         .foregroundColor(self.foregroundColor)
@@ -43,7 +43,7 @@ struct PrimaryButtonView: View {
         .frame(minHeight: self.minHeight)
     }
     
-    private let CORNER_RADIUS: CGFloat = 6
+    private let CORNER_RADIUS: CGFloat = 10
 }
 
 struct PrimaryButtonView_Previews: PreviewProvider {

@@ -25,6 +25,7 @@ final class AuthViewModel: ObservableObject {
     @Published var selectedStep: RegistrationStep = .personalData
     @Published var navigate = false
     
+    @Published var dateOfBirthDone = false
     @Published var personalDataDone = false
     @Published var identificationDone = false
     @Published var investorProfileDone = false
@@ -165,17 +166,15 @@ final class AuthViewModel: ObservableObject {
     
     // MARK: Post-Registration Menu
     // MARK: - Step 0 - DateOfBirth
-    @Published var dateOfBirth: Date? = nil
-    var dobIsAdult: Bool? {
-        guard let dob = self.dateOfBirth else {
-            return nil
-        }
-        
-        guard let calculatedYear = Calendar.current.dateComponents([.year], from: dob, to: Date()).year, calculatedYear >= 18 else {
+    @Published var dateOfBirth: Date = Date()
+    var dobIsAdult: Bool {
+        guard let calculatedYear = Calendar.current.dateComponents([.year], from: self.dateOfBirth, to: Date()).year, calculatedYear >= 18 else {
             return false
         }
-        
         return true
+    }
+    func dateOfBirthQuestNext() {
+        self.dateOfBirthDone = true
     }
     
     // MARK: - Step 1 - PersonalData (Adult)
@@ -267,9 +266,25 @@ final class AuthViewModel: ObservableObject {
     }
     
     // MARK: - Step 1 - PersonalData (Child)
+    // Parent's email
+    @Published var parentEmailQuestField = ""
+    @Published var parentEmailQuestErrorText: FieldError = .silent
+    private var isParentEmailValidPublisher: AnyPublisher<Bool, Never> {
+        self.$countryQuestField
+            .removeDuplicates()
+            .map { $0.count > 4 }
+            .eraseToAnyPublisher()
+    }
     
     // MARK: - Step 2 - Identification
     // MARK: - Step 3 - Investor Profile
+    @Published var showLongQuestions = false
+    @Published var q1 = AuthInvestorProfileEnum.q1_responses[0]
+    @Published var q2 = AuthInvestorProfileEnum.q2_responses[0]
+    @Published var q3 = AuthInvestorProfileEnum.q3_responses[0]
+    @Published var q4 = AuthInvestorProfileEnum.q4_responses[0]
+    @Published var q5 = AuthInvestorProfileEnum.q5_responses[0]
+    @Published var q6 = AuthInvestorProfileEnum.q6_responses[0]
     // MARK: - Step 4 - Experience Customisation
     
     

@@ -8,5 +8,5 @@
 import SwiftUI
 
 protocol AuthNavigationManager: CaseIterable, Identifiable, Hashable where AllCases: BidirectionalCollection & RandomAccessCollection {
-    var text: (title: String, description: String) { get }
+    var text: (title: String, description: String, image: Image?, acceptButtonText: String?, denyButtonText: String?) { get }
 }
