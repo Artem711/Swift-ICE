@@ -12,11 +12,13 @@ enum AuthRegistrationCompletionStatus {
 }
 
 struct AuthRegistrationBlockView: View {
+    typealias VoidActionHandler = () -> Void
     let title: String
     let description: String
     let time: Int
     let comlpetionStatus: AuthRegistrationCompletionStatus
-    let handler: () -> Void
+    let handler: VoidActionHandler
+    let makeChangesHandler: VoidActionHandler
     
     var body: some View {
         HStack {
@@ -66,7 +68,7 @@ struct AuthRegistrationBlockView: View {
         HStack {
             Text(self.title)
             if self.comlpetionStatus == .completed {
-                self.timeBadge(text: "Make changes")
+                Button(action: self.makeChangesHandler) { self.timeBadge(text: "Make changes") }
             } else {
                 self.timeBadge(text: "\(self.time) min")
             }

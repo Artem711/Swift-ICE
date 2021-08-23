@@ -19,8 +19,7 @@ struct AuthRegistrationMenuView: View {
                             title: item.content.title,
                             description: item.content.description,
                             time: item.content.time,
-                            comlpetionStatus: self.completionStatus(item: item))
-                            { self.viewModel.continueHandler(item: item) }
+                            comlpetionStatus: self.completionStatus(item: item), handler: { self.viewModel.continueHandler(item: item) }, makeChangesHandler: { self.viewModel.continueHandler(item: item.previous()) })
                     }
                 }
                 .offset(x: 0, y: -20)
@@ -28,32 +27,44 @@ struct AuthRegistrationMenuView: View {
             
             Group {
                 // Step 0: Date of Birth
-                
-                
-                // MARK: - Steps of Registration Menu
-                // Step 1: PersonalData
-               NavigationLink(
-                destination: AuthPersonalDataQuestView(),
-                isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .personalData),
-                label: {EmptyView()})
-                
-                // Step 2: Identification
                 NavigationLink(
-                 destination: AuthIdentificationQuestView(),
-                    isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .identification),
+                 destination: AuthDateOfBirthView(),
+                    isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .personalData && self.viewModel.dateOfBirth == nil),
                  label: {EmptyView()})
                 
-                // Step 3: InvestorProfile
-                NavigationLink(
-                 destination: AuthInvestorProfileQuestView(),
-                 isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .investorProfile),
-                 label: {EmptyView()})
-                
-                // Step 4: ExperienceCustomisation
-                NavigationLink(
-                 destination: AuthExperienceCustomisationQuestView(),
-                 isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .experienceCustomisation),
-                 label: {EmptyView()})
+                if let dob = self.viewModel.dateOfBirth, let isAdult = self.viewModel.dobIsAdult, dob != nil && isAdult {
+                    // MARK: - Steps of Registration Menu
+                    // Step 1: PersonalData
+                    if isAdult {
+                        NavigationLink(
+                            destination: AuthPersonalDataQuestView(viewModel: self.viewModel),
+                         isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .personalData),
+                         label: {EmptyView()})
+                    } else {
+                        NavigationLink(
+                         destination: AuthPersonalDataQuestView(viewModel: self.viewModel),
+                         isActive: .constant(self.viewModel.navigate && self.viewModel.selectedStep == .personalData),
+                         label: {EmptyView()})
+                    }
+                    
+                    // Step 2: Identification
+                    NavigationLink(
+                     destination: AuthIdentificationQuestView(),
+                        isActive: .constant(self.viewModel.navigateToIdentification),
+                     label: {EmptyView()})
+                    
+                    // Step 3: InvestorProfile
+                    NavigationLink(
+                     destination: AuthInvestorProfileQuestView(),
+                        isActive: .constant(self.viewModel.navigateToInvestorProfile),
+                     label: {EmptyView()})
+                    
+                    // Step 4: ExperienceCustomisation
+                    NavigationLink(
+                     destination: AuthExperienceCustomisationQuestView(),
+                        isActive: .constant(self.viewModel.navigateToExperienceCustomisation),
+                     label: {EmptyView()})
+                }
             }.hidden()
         }
     }
@@ -85,7 +96,7 @@ struct AuthMenuView_Previews: PreviewProvider {
 struct AuthDateOfBirthView: View {
     var body: some View {
         AuthWrapperView(item: AuthPersonalDataAdultEnum.self, content: { item in
-            VStack {
+            Group {
                 
             }
         })
@@ -115,19 +126,54 @@ extension AuthDateOfBirthEnum: Identifiable {
 
 // Step 1 - PersonalData -- View
 struct AuthPersonalDataQuestView: View {
+    @ObservedObject var viewModel: AuthViewModel
+    typealias LocalQuestEnum = AuthPersonalDataAdultEnum
+    
     var body: some View {
-        AuthWrapperView(item: AuthPersonalDataAdultEnum.self, content: { item in
+        AuthWrapperView(item: LocalQuestEnum.self, content: { item in
             Group {
                 switch item {
                 case .email:
-                    Text("dd")
+                    TextFieldView(placeholder: "Email",
+                                  text: self.$viewModel.emailQuestField,
+                                  errorText: self.viewModel.emailQuestErrorText)
                 case .emailVerification:
-                    Text("dd")
+                    TextFieldView(placeholder: "Email verification",
+                                  text: self.$viewModel.emailVerificationQuestField,
+                                  errorText: self.viewModel.emailVerificationQuestErrorText)
                 case .names:
-                    Text("dd")
+                    VStack {
+                        TextFieldView(placeholder: "Legal first name",
+                                      text: self.$viewModel.emailVerificationQuestField,
+                                      errorText: self.viewModel.emailVerificationQuestErrorText)
+                        
+                        TextFieldView(placeholder: "Legal last name",
+                                      text: self.$viewModel.emailVerificationQuestField,
+                                      errorText: self.viewModel.emailVerificationQuestErrorText)
+                    }
                 case .address:
-                    Text("dd")
+                    VStack {
+                        TextFieldView(placeholder: "Street and number",
+                                      text: self.$viewModel.streetQuestField,
+                                      errorText: self.viewModel.streetQuestErrorText)
+                        TextFieldView(placeholder: "Building, floor, etc.",
+                                      text: self.$viewModel.buildingQuestField,
+                                      errorText: self.viewModel.buildingQuestErrorText)
+                        TextFieldView(placeholder: "Postal code",
+                                      text: self.$viewModel.postalCodeQuestField,
+                                      errorText: self.viewModel.postalCodeQuestErrorText)
+                        TextFieldView(placeholder: "City",
+                                      text: self.$viewModel.cityQuestField,
+                                      errorText: self.viewModel.cityQuestErrorText)
+                        TextFieldView(placeholder: "Country",
+                                      text: self.$viewModel.countryQuestField,
+                                      errorText: self.viewModel.countryQuestErrorText)
+                    }
                 }
+            }
+        }, onGoNext: {item in
+            if item == LocalQuestEnum.allCases.last {
+                
             }
         })
     }

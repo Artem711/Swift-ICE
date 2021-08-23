@@ -12,6 +12,7 @@ import Combine
 enum FieldError: String {
     case tooShort = "tooShort"
     case tooLong = "tooLong"
+    case empty = "empty"
     case invalid = "invalid"
     case weakPassword = "weakPassword"
     case wrongRepeatedPassword = "wrongRepeatedPassword"
@@ -163,34 +164,116 @@ final class AuthViewModel: ObservableObject {
     }
     
     // MARK: Post-Registration Menu
-    // MARK: - Quest - dob
-    @Published var dobField = Date()
-    var dobIsAdult: Bool {
-        if let calculatedYear = Calendar.current.dateComponents([.year], from: self.dobField, to: Date()).year, calculatedYear < 18 {
-            return false
-        } else {
-            return true
+    // MARK: - Step 0 - DateOfBirth
+    @Published var dateOfBirth: Date? = nil
+    var dobIsAdult: Bool? {
+        guard let dob = self.dateOfBirth else {
+            return nil
         }
+        
+        guard let calculatedYear = Calendar.current.dateComponents([.year], from: dob, to: Date()).year, calculatedYear >= 18 else {
+            return false
+        }
+        
+        return true
     }
+    
+    // MARK: - Step 1 - PersonalData (Adult)
+    // - EmailField
+    @Published var emailQuestField = ""
+    @Published var emailQuestErrorText: FieldError = .silent
+    private var isEmailValidPublisher: AnyPublisher<Bool, Never> {
+        self.$emailQuestField
+            .removeDuplicates()
+            .map { $0.count > 4 }
+            .eraseToAnyPublisher()
+    }
+    
+    // - EmailVerificationField (code)
+    @Published var emailVerificationQuestField = ""
+    @Published var emailVerificationQuestErrorText: FieldError = .silent
+    private var isEmailVerificationValidPublisher: AnyPublisher<Bool, Never> {
+        self.$emailQuestField
+            .removeDuplicates()
+            .map { $0.count > 4 }
+            .eraseToAnyPublisher()
+    }
+    
+    // - Names
+    // FirstName
+    @Published var firstNameQuestField = ""
+    @Published var firstNameQuestErrorText: FieldError = .silent
+    private var isFirstNameEmptyPublisher: AnyPublisher<Bool, Never> {
+        self.$firstNameQuestField
+            .removeDuplicates()
+            .map { $0.isEmpty }
+            .eraseToAnyPublisher()
+    }
+    // LastName
+    @Published var lastNameQuestField = ""
+    @Published var lastNameQuestErrorText: FieldError = .silent
+    private var isLastNameEmptyPublisher: AnyPublisher<Bool, Never> {
+        self.$lastNameQuestField
+            .removeDuplicates()
+            .map { $0.isEmpty }
+            .eraseToAnyPublisher()
+    }
+    
+    // - Address
+    // Street/number
+    @Published var streetQuestField = ""
+    @Published var streetQuestErrorText: FieldError = .silent
+    private var isStreetEmptyPublisher: AnyPublisher<Bool, Never> {
+        self.$streetQuestField
+            .removeDuplicates()
+            .map { $0.isEmpty }
+            .eraseToAnyPublisher()
+    }
+    // Building/floor
+    @Published var buildingQuestField = ""
+    @Published var buildingQuestErrorText: FieldError = .silent
+    private var isBuildingEmptyPublisher: AnyPublisher<Bool, Never> {
+        self.$buildingQuestField
+            .removeDuplicates()
+            .map { $0.isEmpty }
+            .eraseToAnyPublisher()
+    }
+    // Postal code
+    @Published var postalCodeQuestField = ""
+    @Published var postalCodeQuestErrorText: FieldError = .silent
+    private var isPostalCodeValidPublisher: AnyPublisher<Bool, Never> {
+        self.$postalCodeQuestField
+            .removeDuplicates()
+            .map { $0.count < 4 }
+            .eraseToAnyPublisher()
+    }
+    // City
+    @Published var cityQuestField = ""
+    @Published var cityQuestErrorText: FieldError = .silent
+    private var isCityEmptyPublisher: AnyPublisher<Bool, Never> {
+        self.$cityQuestField
+            .removeDuplicates()
+            .map { $0.isEmpty }
+            .eraseToAnyPublisher()
+    }
+    // Country
+    @Published var countryQuestField = ""
+    @Published var countryQuestErrorText: FieldError = .silent
+    private var isCountryEmptyPublisher: AnyPublisher<Bool, Never> {
+        self.$countryQuestField
+            .removeDuplicates()
+            .map { $0.isEmpty }
+            .eraseToAnyPublisher()
+    }
+    
+    // MARK: - Step 1 - PersonalData (Child)
+    
+    // MARK: - Step 2 - Identification
+    // MARK: - Step 3 - Investor Profile
+    // MARK: - Step 4 - Experience Customisation
     
     
     // MARK: - ** REGISTRATION MENU LOGIC **
-    var navigateToBirthDate: Bool
-    { self.navigate && self.selectedStep == .personalData && self.dobIsAdult == nil }
-    
-    private var navigateToPersonalData: Bool
-    { self.navigate && self.selectedStep == .personalData && self.dobIsAdult != nil }
-    
-    var navigateToAdultPesrsonalData: Bool {
-        let x = { () -> Bool in self.dobIsAdult }()
-        return self.navigateToPersonalData && x
-    }
-    
-    var navigateToChildrenPersonalData: Bool {
-        let x = { () -> Bool in !self.dobIsAdult }()
-        return self.navigateToPersonalData && x
-    }
-    
     var navigateToIdentification: Bool
     { self.navigate && self.selectedStep == .identification }
     
