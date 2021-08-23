@@ -16,26 +16,37 @@ struct AuthView: View {
         NavigationView {
             VStack {
                 AuthStarterView(viewModel: self.viewModel)
+                    .onAppear {self.viewModel.subscribe()}
                 
                 Group {
                     NavigationLink(
-                        destination: AuthLoginView(viewModel: self.viewModel),
+                        destination: AuthLoginView(viewModel: self.viewModel)
+                            .onAppear{self.viewModel.subscribe()},
                         tag: .login,
                         selection: self.$viewModel.authMove,
                         label: {EmptyView()})
                     
                     NavigationLink(
-                        destination: AuthPreRegistrationMenuView(viewModel: self.viewModel),
+                        destination: AuthPreRegistrationMenuView(viewModel: self.viewModel)
+                            .onAppear{self.viewModel.subscribe()},
                         tag: .register,
                         selection: self.$viewModel.authMove,
                         label: {EmptyView()})
+                    
+                    NavigationLink(
+                        destination: AuthRegistrationMenuView(viewModel: self.viewModel),
+                        tag: .registerMenu,
+                        selection: self.$viewModel.authMove,
+                        label: {EmptyView()})
+                    
+                    
                 }.hidden()
             }
             .navigationBarHidden(true)
         }
     }
 }
-
+ 
 struct AuthStarterView: View {
     @ObservedObject var viewModel: AuthViewModel
 
@@ -45,10 +56,10 @@ struct AuthStarterView: View {
                 TextFieldView(
                     placeholder: "Placeholder",
                     text: self.$viewModel.phoneNumQuestField,
-                    errorText: self.$viewModel.phoneNumQuestErrorText)
+                    errorText: self.viewModel.phoneNumQuestErrorText)
             }
         }, onGoNext: {_ in self.viewModel.phoneNumQuestNext()},
-        nextButtonDisabled: !self.viewModel.phoneNumQuestValid)
+        nextButtonDisabled: { _ in self.viewModel.phoneNumQuestErrorText != .valid})
     }
 }
 
@@ -70,29 +81,45 @@ struct AuthPreRegistrationMenuView: View {
             Group {
                 switch item {
                 case .phoneNumVerification:
-                    TextFieldView(placeholder: "x",
-                                  text: self.$viewModel.phoneNumVerificationQuestField,
-                                  errorText: self.$viewModel.phoneNumQuestErrorText)
+                    
+                        TextFieldView(placeholder: "x",
+                                      text: self.$viewModel.phoneNumVerificationQuestField,
+                                  errorText: self.viewModel.phoneNumVerificationQuestErrorText)
                 case .passcodeCreation:
-                    TextFieldView(placeholder: "x",
-                                  text: self.$viewModel.passcodeCreationQuestField,
-                                  errorText: self.$viewModel.passcodeCreationQuestErrorText)
+                    
+                        TextFieldView(placeholder: "x",
+                                      text: self.$viewModel.passcodeCreationQuestField,
+                                  errorText: self.viewModel.passcodeCreationQuestErrorText)
+                    
                 case .passcodeVerification:
-                    TextFieldView(placeholder: "x",
-                                  text: self.$viewModel.passcodeVerificationQuestField,
-                                  errorText: self.$viewModel.passcodeVerificationQuestErrorText)
+                        TextFieldView(placeholder: "x",
+                                      text: self.$viewModel.passcodeVerificationQuestField,
+                                  errorText: self.viewModel.passcodeVerificationQuestErrorText)
+                    
                 }
             }
-        }, allowNext: { item in
+        }, onGoNext: { item in
+            switch item {
+            case .passcodeVerification:
+                self.viewModel.passcodeVerificationQuestNext()
+            default: {}()
+            }
+        }, onGoBack: { item in
             switch item {
             case .phoneNumVerification:
-                return self.viewModel.phoneNumVerificationQuestValid
-            case .passcodeCreation:
-                return self.viewModel.passcodeCreationQuestValid
-            case .passcodeVerification:
-                return self.viewModel.passcodeVerificationQuestValid
+                self.viewModel.phoneNumVerificationQuestBack()
+            default: {}()
             }
-        }, allowBack: {_ in true })
+        }, nextButtonDisabled: { item in
+            switch item {
+            case .phoneNumVerification:
+                return self.viewModel.phoneNumVerificationQuestErrorText != .valid
+            case .passcodeCreation:
+                return self.viewModel.passcodeCreationQuestErrorText != .valid
+            case .passcodeVerification:
+                return self.viewModel.passcodeVerificationQuestErrorText != .valid
+            }
+        })
     }
 }
 

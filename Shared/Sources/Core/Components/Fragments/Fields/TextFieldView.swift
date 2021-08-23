@@ -10,11 +10,12 @@ import SwiftUI
 struct TextFieldView: View {
     let placeholder: String
     @Binding var text: String
-    @Binding var errorText: String
+    var errorText: FieldError
     let keyboardType: UIKeyboardType = .default
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text(self.txt).errorTextStyle()
             TextField(self.placeholder, text: self.$text)
                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
                 .padding(.leading, 5)
@@ -24,9 +25,16 @@ struct TextFieldView: View {
                     .stroke(Color.gray.opacity(0.25))
                 )
             
-            if self.errorText.count > 0 {
-                Text(self.errorText).errorTextStyle()
-            }
+            
+        
+        }
+    }
+    
+    var txt: String {
+        if self.errorText != .valid && self.errorText != .silent {
+            return self.errorText.rawValue
+        } else {
+            return ""
         }
     }
 }

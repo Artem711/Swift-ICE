@@ -8,6 +8,18 @@
 import Foundation
 import Combine
 
+
+enum FieldError: String {
+    case tooShort = "tooShort"
+    case tooLong = "tooLong"
+    case invalid = "invalid"
+    case weakPassword = "weakPassword"
+    case wrongRepeatedPassword = "wrongRepeatedPassword"
+    case valid = "valid"
+    case silent = ""
+}
+
+
 final class AuthViewModel: ObservableObject {
     @Published var selectedStep: RegistrationStep = .personalData
     @Published var navigate = false
@@ -19,59 +31,82 @@ final class AuthViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() { self.subscribe() }
-    
-    private func subscribe() {
+    func subscribe(_ num: Int = 1) {
+        self.cancel()
         if let move = self.authMove {
             switch move {
             case .login:
                 print("login")
             case .register:
-                if !self.navigate {
-                    self.phoneNumVerificationQuestValidPublisher
-                    self.passcodeCreationQuestValidPublisher
-                    self.passcodeVerificationQuestValidPublisher
-                } else {
-                    switch self.selectedStep {
-                    case .personalData:
-                        print("personalData")
-                    case .identification:
-                        print("identification")
-                    case .investorProfile:
-                        print("investorProfile")
-                    case .experienceCustomisation:
-                        print("experienceCustomisation")
-                    }
+                
+                self.isPhoneNumVerificationValidPublisher
+                    .dropFirst()
+                    .receive(on: RunLoop.main)
+                    .map { value in value ? .valid : .invalid}
+                    .assign(to: \.phoneNumVerificationQuestErrorText, on: self)
+                    .store(in: &cancellables)
+                
+                
+                
+                self.isPasscodeCreationTooShortPublisher
+                    .dropFirst()
+                    .receive(on: RunLoop.main)
+                    .map { value in value ?  .tooShort : .valid}
+                    .assign(to: \.passcodeCreationQuestErrorText, on: self)
+                    .store(in: &cancellables)
+                
+                
+                
+                self.arePasscodesEqualPublisher
+                    .dropFirst()
+                    .receive(on: RunLoop.main)
+                    .map { value in value ? .valid : .wrongRepeatedPassword}
+                    .assign(to: \.passcodeVerificationQuestErrorText, on: self)
+                    .store(in: &cancellables)
+                
+                  
+            case .registerMenu:
+                switch self.selectedStep {
+                case .personalData:
+                    print("personalData")
+                case .identification:
+                    print("identification")
+                case .investorProfile:
+                    print("investorProfile")
+                case .experienceCustomisation:
+                    print("experienceCustomisation")
+                }
+              
                 }
             }
-        } else {
-            self.phoneNumQuestValidPublisher
-                .receive(on: RunLoop.main)
-                .assign(to: \.phoneNumQuestValid, on: self)
-                .store(in: &cancellables)
-            
-            self.phoneNumQuestValidPublisher
+     else {
+            self.isPhoneNumValidPublisher
                 .dropFirst()
                 .receive(on: RunLoop.main)
-                .map { value in value == true ? "" : "Invalid phone number" }
+                .map { value in value == true ? .valid : .invalid}
                 .assign(to: \.phoneNumQuestErrorText, on: self)
                 .store(in: &cancellables)
         }
     }
     
+    func cancel() {
+        for i in cancellables {
+            i.cancel()
+        }
+    }
+    
     // MARK: - ** START SCREENS **
-    enum AuthState { case login, register }
+    enum AuthState { case login, register, registerMenu }
     @Published var authMove: AuthState? = nil
     
     // MARK: - Quest - AuthPhoneNumQuest
     @Published var phoneNumQuestField = ""
-    @Published var phoneNumQuestErrorText = ""
-    @Published var phoneNumQuestValid = false
+    @Published var phoneNumQuestErrorText: FieldError = .silent
     func phoneNumQuestNext() {
         self.authMove = .register
     }
     
-    private var phoneNumQuestValidPublisher: AnyPublisher<Bool, Never> {
+    private var isPhoneNumValidPublisher: AnyPublisher<Bool, Never> {
         self
             .$phoneNumQuestField
             .debounce(for: 0.8, scheduler: RunLoop.main)
@@ -87,43 +122,47 @@ final class AuthViewModel: ObservableObject {
     // MARK: Pre-Registration Menu
     // PhoneNumVerification
     @Published var phoneNumVerificationQuestField = ""
-    @Published var phoneNumVerificationQuestErrorText = ""
-    @Published var phoneNumVerificationQuestValid = false
-    func phoneNumVerificationQuestNext() {}
-    private var phoneNumVerificationQuestValidPublisher: AnyPublisher<Bool, Never> {
+    @Published var phoneNumVerificationQuestErrorText: FieldError = .silent
+    func phoneNumVerificationQuestNext() {
+    }
+    func phoneNumVerificationQuestBack() {
+        self.authMove = nil
+    }
+    private var isPhoneNumVerificationValidPublisher: AnyPublisher<Bool, Never> {
         self
             .$phoneNumVerificationQuestField
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
-            .map { $0.count >= 6 }
+            .map { $0.count < 4 }
             .eraseToAnyPublisher()
     }
     
     // PasscodeCreation
     @Published var passcodeCreationQuestField = ""
-    @Published var passcodeCreationQuestErrorText = ""
-    @Published var passcodeCreationQuestValid = false
-    func passcodeCreationQuestNext() {}
-    private var passcodeCreationQuestValidPublisher: AnyPublisher<Bool, Never> {
+    @Published var passcodeCreationQuestErrorText: FieldError = .silent
+    func passcodeCreationQuestNext() {
+    }
+    private var isPasscodeCreationTooShortPublisher: AnyPublisher<Bool, Never> {
         self
             .$passcodeCreationQuestField
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
-            .map { $0.count >= 6 }
+            .map { $0.count < 4 }
             .eraseToAnyPublisher()
     }
     
     // PasscodeVerification
     @Published var passcodeVerificationQuestField = ""
-    @Published var passcodeVerificationQuestErrorText = ""
-    @Published var passcodeVerificationQuestValid = false
-    func passcodeVerificationQuestNext() {}
-    private var passcodeVerificationQuestValidPublisher: AnyPublisher<Bool, Never> {
-        self
-            .$passcodeVerificationQuestField
+    @Published var passcodeVerificationQuestErrorText: FieldError = .silent
+    func passcodeVerificationQuestNext() {
+        self.authMove = .registerMenu
+    }
+    private var arePasscodesEqualPublisher: AnyPublisher<Bool, Never> {
+        self.$passcodeVerificationQuestField
+            .dropFirst(3)
+            .combineLatest(self.$passcodeCreationQuestField)
             .debounce(for: 0.8, scheduler: RunLoop.main)
-            .removeDuplicates()
-            .map { $0.count >= 6 }
+            .map { $0 == $1 }
             .eraseToAnyPublisher()
     }
     
@@ -137,7 +176,7 @@ final class AuthViewModel: ObservableObject {
             return true
         }
     }
-
+    
     
     // MARK: - ** REGISTRATION MENU LOGIC **
     var navigateToBirthDate: Bool
@@ -222,7 +261,7 @@ enum RegistrationStep: String, CaseIterable {
     case identification = "Identification"
     case investorProfile = "Create your investor Profile"
     case experienceCustomisation = "Customise your experience"
-
+    
     var content: (title: String, time: Int, description: String) {
         switch self {
         case .personalData:
