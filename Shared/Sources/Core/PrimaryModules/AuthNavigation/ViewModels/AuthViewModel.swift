@@ -64,7 +64,7 @@ final class AuthViewModel: ObservableObject {
                     .assign(to: \.passcodeVerificationQuestErrorText, on: self)
                     .store(in: &cancellables)
                 
-                  
+                
             case .registerMenu:
                 switch self.selectedStep {
                 case .personalData:
@@ -76,10 +76,10 @@ final class AuthViewModel: ObservableObject {
                 case .experienceCustomisation:
                     print("experienceCustomisation")
                 }
-              
-                }
+                
             }
-     else {
+        }
+        else {
             self.isPhoneNumValidPublisher
                 .dropFirst()
                 .receive(on: RunLoop.main)
@@ -109,7 +109,6 @@ final class AuthViewModel: ObservableObject {
     private var isPhoneNumValidPublisher: AnyPublisher<Bool, Never> {
         self
             .$phoneNumQuestField
-            .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.count >= 6 }
             .eraseToAnyPublisher()
@@ -131,7 +130,6 @@ final class AuthViewModel: ObservableObject {
     private var isPhoneNumVerificationValidPublisher: AnyPublisher<Bool, Never> {
         self
             .$phoneNumVerificationQuestField
-            .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.count < 4 }
             .eraseToAnyPublisher()
@@ -145,7 +143,6 @@ final class AuthViewModel: ObservableObject {
     private var isPasscodeCreationTooShortPublisher: AnyPublisher<Bool, Never> {
         self
             .$passcodeCreationQuestField
-            .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.count < 4 }
             .eraseToAnyPublisher()
@@ -161,7 +158,6 @@ final class AuthViewModel: ObservableObject {
         self.$passcodeVerificationQuestField
             .dropFirst(3)
             .combineLatest(self.$passcodeCreationQuestField)
-            .debounce(for: 0.8, scheduler: RunLoop.main)
             .map { $0 == $1 }
             .eraseToAnyPublisher()
     }
@@ -212,7 +208,8 @@ extension AuthViewModel {
     func continueHandler(item: RegistrationStep) {
         switch item {
         case .personalData:
-            print("")
+            self.navigate = true
+            self.selectedStep = .personalData
         case .identification:
             if self.personalDataDone {
                 self.selectedStep = .identification

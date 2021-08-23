@@ -34,7 +34,7 @@ struct AuthView: View {
                         label: {EmptyView()})
                     
                     NavigationLink(
-                        destination: AuthRegistrationMenuView(viewModel: self.viewModel),
+                        destination: AuthRegistrationMenuView(viewModel: self.viewModel).navigationBarHidden(true),
                         tag: .registerMenu,
                         selection: self.$viewModel.authMove,
                         label: {EmptyView()})
