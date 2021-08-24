@@ -59,7 +59,7 @@ struct AuthRegistrationMenuView: View {
                     
                     // Step 3: InvestorProfile
                     NavigationLink(
-                        destination: AuthInvestorProfileQuestView().navigationBarHidden(true),
+                        destination: AuthInvestorProfileQuestView(viewModel: self.viewModel).navigationBarHidden(true),
                         isActive: .constant(self.viewModel.navigateToInvestorProfile),
                         label: {EmptyView()})
                     
@@ -101,7 +101,7 @@ struct AuthMenuView_Previews: PreviewProvider {
 struct AuthDateOfBirthView: View {
     @ObservedObject var viewModel: AuthViewModel
     typealias LocalQuestEnum = AuthDateOfBirthEnum
-
+    
     var body: some View {
         AuthWrapperView(item: LocalQuestEnum.self, content: { item in
             DateFieldView(selectedDate: self.$viewModel.dateOfBirth, mode: [.date])
@@ -115,7 +115,9 @@ struct AuthDateOfBirthView: View {
 }
 
 // Step 0 - DateOfBirth -- Enum
-enum AuthDateOfBirthEnum: AuthNavigationManager { case x
+enum AuthDateOfBirthEnum: AuthNavigationManager {
+    case x
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         return ("Date of birth", "dateofbirthdesc")
     }
@@ -129,7 +131,7 @@ extension AuthDateOfBirthEnum: Identifiable {
 struct AuthPersonalDataAdultQuestView: View {
     @ObservedObject var viewModel: AuthViewModel
     typealias LocalQuestEnum = AuthPersonalDataAdultEnum
-
+    
     var body: some View {
         AuthWrapperView(item: LocalQuestEnum.self, content: { item in
             Group {
@@ -183,6 +185,7 @@ struct AuthPersonalDataAdultQuestView: View {
 // Step 1 - PersonalData (Adult) -- Enum
 enum AuthPersonalDataAdultEnum: AuthNavigationManager {
     case email, emailVerification, names, address
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         switch self {
         case .email:
@@ -206,7 +209,7 @@ extension AuthPersonalDataAdultEnum: Identifiable {
 struct AuthPersonalDataChildQuestView: View {
     @ObservedObject var viewModel: AuthViewModel
     typealias LocalQuestEnum = AuthPersonalDataChildEnum
-
+    
     var body: some View {
         AuthWrapperView(item: LocalQuestEnum.self, content: { item in
             Group {
@@ -231,6 +234,7 @@ struct AuthPersonalDataChildQuestView: View {
 // Step 1 - PersonalData (Child) -- Enum
 enum AuthPersonalDataChildEnum: AuthNavigationManager {
     case parentEmail, qrCode
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         switch self {
         case .parentEmail:
@@ -249,7 +253,7 @@ extension AuthPersonalDataChildEnum: Identifiable {
 struct AuthIdentificationQuestView: View {
     @ObservedObject var viewModel: AuthViewModel
     typealias LocalQuestEnum = AuthIdentificationEnum
-
+    
     var body: some View {
         AuthWrapperView(item: LocalQuestEnum.self, content: { item in
             Group {
@@ -277,6 +281,7 @@ struct AuthIdentificationQuestView: View {
 // Step 2 - Identification -- Enum
 enum AuthIdentificationEnum: AuthNavigationManager {
     case documentChoice, frontIdCard, backIdCard, selfie, end
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         switch self {
         case .documentChoice:
@@ -299,16 +304,46 @@ extension AuthIdentificationEnum: Identifiable {
 
 // Step 3 - InvestorProfile -- View
 struct AuthInvestorProfileQuestView: View {
+    @State private var shortenQuestions = false
+    @ObservedObject var viewModel: AuthViewModel
+    typealias LocalQuestEnum = AuthInvestorProfileEnum
+    
     var body: some View {
-        VStack {
-            Text("AuthInvestorProfile")
-        }
+        AuthWrapperView(item: LocalQuestEnum.self, content: { item in
+            Group {
+                switch item {
+                case .start:
+                    ToggleButtonView(
+                        isOn: self.$shortenQuestions,
+                        text: "Shortened questions",
+                        icon: Image(systemName: "star"))
+                case .q1:
+                    Text("Question")
+                case .q2:
+                    Text("Question")
+                case .q3:
+                    Text("Question")
+                case .q4:
+                    Text("Question")
+                case .q5:
+                    Text("Question")
+                case .q6:
+                    Text("Question")
+                }
+            }
+        },
+        onGoNext: {item in
+            if item == LocalQuestEnum.allCases.last { self.viewModel.doneHandler(item: .investorProfile) }
+        }, onGoBack: {item in
+            if item == LocalQuestEnum.allCases.first { self.viewModel.navigate = false }
+        })
     }
 }
 
 // Step 3 - InvestorProfile -- Enum
 enum AuthInvestorProfileEnum: AuthNavigationManager {
     case start, q1, q2, q3, q4, q5, q6
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         switch self {
         case .start:
@@ -349,24 +384,70 @@ struct AuthExperienceCustomisationQuestView: View {
     @ObservedObject var viewModel: AuthViewModel
     typealias LocalQuestEnum = AuthExperienceCustomisationEnum
     
+    @State private var showPositiveAlert = false
+    @State private var showNegativeAlert = false
+
     var body: some View {
-        VStack {
-            
+        AuthWrapperView(item: LocalQuestEnum.self) { item in
+            VStack {
+                if let data = item.inquiryData {
+                    InquiryView(
+                        title: item.text.title,
+                        subtitle: item.text.description,
+                        image: data.image,
+                        acceptButtonText: data.acceptButtonText,
+                        denyButtonText: data.denyButtonText,
+                        acceptButtonHandler: self.acceptButtonHandler,
+                        denyButtonHandler: self.denyButtonHandler)
+                }
+            } .alert(isPresented: self.$showPositiveAlert) {
+                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
+            }
+            .alert(isPresented: self.$showNegativeAlert) {
+                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
+            }
+     
         }
     }
+    
+    typealias ActionButtonTuple = (text: String, handler: (_: UIAlertAction) -> Void)
+
+    
+    private func acceptButtonHandler() {}
+    private func denyButtonHandler() {}
 }
+
 
 // Step 4 - ExperienceCustomisation -- Enum
 enum AuthExperienceCustomisationEnum: AuthNavigationManager {
     case faceId, notifications, mode
+    var inquiryData: InquiryData? {
+        switch self {
+        case .faceId:
+            return InquiryData(
+                image: Image(systemName: "star"),
+                acceptButtonText: "",
+                denyButtonText: "")
+        case .notifications:
+            return InquiryData(
+                image: Image(systemName: "star"),
+                acceptButtonText: "",
+                denyButtonText: "")
+        case .mode:
+            return InquiryData(
+                image: Image(systemName: "star"),
+                acceptButtonText: "",
+                denyButtonText: "")
+        }
+    }
     var text: (title: String, description: String) {
         switch self {
         case .faceId:
-            return ("faceId", "faceIddesc")
+            return ("Allow Face ID", "Would you like to securely log in into ICE using Face ID (Touch ID, depending on the model)?")
         case .notifications:
-            return ("notifications", "notificationsdesc")
+            return ("Allow notifications", "Would you like to recive important updates about your portfolio (and more) via notifications?")
         case .mode:
-            return ("mode", "modedesc")
+            return ("Choose your mode", "Lite mode (for beginners)")
         }
     }
 }
@@ -377,7 +458,9 @@ extension AuthExperienceCustomisationEnum: Identifiable {
 
 
 // General enum for Registration Menu
-enum AuthRegistrationMenuEnum: AuthNavigationManager { case x
+enum AuthRegistrationMenuEnum: AuthNavigationManager {
+    case x
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         return ("Navigation", "Navigationdesc")
     }

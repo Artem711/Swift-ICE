@@ -8,5 +8,13 @@
 import SwiftUI
 
 protocol AuthNavigationManager: CaseIterable, Identifiable, Hashable where AllCases: BidirectionalCollection & RandomAccessCollection {
-    var text: (title: String, description: String, image: Image?, acceptButtonText: String?, denyButtonText: String?) { get }
+    typealias InfoTuple = (title: String, description: String)
+    var text: InfoTuple { get }
+    var inquiryData: InquiryData? { get }
+}
+
+struct InquiryData {
+    let image: Image
+    let acceptButtonText: String
+    let denyButtonText: String
 }

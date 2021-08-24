@@ -7,18 +7,12 @@
 
 import SwiftUI
 
-
 struct InquiryView: View {
-    typealias ButtonHandler = () -> Void
-    
     let title: String
     let subtitle: String
     let image: Image
     let acceptButtonText: String
     let denyButtonText: String
-    
-    let acceptButtonHandler: ButtonHandler
-    let denyButtonHandler: ButtonHandler
     
     var body: some View {
         VStack() {
@@ -38,5 +32,12 @@ struct InquiryView: View {
                 }).padding(.top, 6)
             }
         }.padding(.horizontal)
+    }
+}
+
+struct InquiryView_Previews: PreviewProvider {
+    static var previews: some View {
+        InquiryView(title: "Allow Face ID", subtitle: "Would you like to securely log in into ICE using Face ID (Touch ID, depending on the model)?", image: Image(systemName: "star"), acceptButtonText: "Allow Face ID", denyButtonText: "No, thank you")
+            .preferredColorScheme(.dark)
     }
 }

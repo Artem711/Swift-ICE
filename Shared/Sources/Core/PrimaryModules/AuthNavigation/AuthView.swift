@@ -130,6 +130,7 @@ struct AuthView_Previews: PreviewProvider {
 }
 
 enum AuthStarterEnum: AuthNavigationManager { case x
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         return ("StarterEnum", "StarterEnumDesc")
     }
@@ -138,6 +139,7 @@ enum AuthStarterEnum: AuthNavigationManager { case x
 extension AuthStarterEnum: Identifiable { var id: Self { self } }
 
 enum AuthLoginEnum: AuthNavigationManager { case x
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         return ("LoginEnum", "LoginEnumDesc")
     }
@@ -147,6 +149,7 @@ extension AuthLoginEnum: Identifiable { var id: Self { self } }
 
 enum AuthPreRegMenuEnum: AuthNavigationManager {
     case phoneNumVerification, passcodeCreation, passcodeVerification
+    var inquiryData: InquiryData? { nil }
     var text: (title: String, description: String) {
         switch self {
         case .phoneNumVerification:
